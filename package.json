@@ -3,12 +3,23 @@
   "version": "0.1.0",
   "description": "A Derpibooru API wrapper for Node.js",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/BytewaveMLP/node-derpi",
   "author": {
     "name": "Eliot Partridge",
     "email": "bytewave@ponypwnage.com",
     "url": "https://code.horse"
   },
+  "scripts": {
+    "prepublish": "yarn run build",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/*.ts",
+    "lint": "eslint . && tslint --project ."
+  },
+  "keywords": [
+    "derpibooru",
+    "api wrapper"
+  ],
   "license": "MIT",
   "private": false,
   "devDependencies": {
@@ -17,6 +28,7 @@
     "@types/node": "^9.6.5",
     "chai": "^4.1.2",
     "mocha": "^5.1.0",
+    "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "tslint-eslint-rules": "^5.1.0",
