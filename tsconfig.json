@@ -7,7 +7,6 @@
 		"sourceMap": false,
 		"strictNullChecks": true,
 		"outDir": "dist",
-		"strict": true,
 		"declaration": true
 	},
 	"include": [
