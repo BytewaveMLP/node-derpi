@@ -7,7 +7,9 @@
 		"sourceMap": false,
 		"strictNullChecks": true,
 		"outDir": "dist",
-		"declaration": true
+		"declaration": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"include": [
 		"lib/**/*"

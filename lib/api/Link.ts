@@ -1,13 +1,9 @@
 import { User } from './User';
 import { Tag } from './Tag';
 
-export interface ILinkSerialized {
-	user_id: number;
-	created_at: string;
-	state: string;
-	tag_id: number;
-}
+import { JsonObject, JsonProperty } from 'json2typescript';
 
+@JsonObject
 export class Link {
 	/**
 	 * The date this link was created
@@ -15,7 +11,8 @@ export class Link {
 	 * @type {Date}
 	 * @memberof Link
 	 */
-	public created: Date;
+	@JsonProperty('created_at', String)
+	private _created: string = '1970-01-01T00:00:00.000Z';
 
 	/**
 	 * The current state of the link
@@ -48,12 +45,5 @@ export class Link {
 	 */
 	get user(): User {
 		return new User();
-	}
-
-	public fromJSON(obj: ILinkSerialized) {
-		this._userId = obj.user_id;
-		this.created = new Date(obj.created_at);
-		this.state = obj.state;
-		this._tagId = obj.tag_id;
 	}
 }

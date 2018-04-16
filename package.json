@@ -34,5 +34,7 @@
     "tslint-eslint-rules": "^5.1.0",
     "typescript": "^2.8.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "json2typescript": "^1.0.5"
+  }
 }
