@@ -26,6 +26,8 @@
     "@types/chai": "^4.1.2",
     "@types/mocha": "^5.0.0",
     "@types/node": "^9.6.5",
+    "@types/request": "^2.47.0",
+    "@types/request-promise-native": "^1.0.14",
     "chai": "^4.1.2",
     "mocha": "^5.1.0",
     "ts-node": "^5.0.1",
@@ -35,6 +37,8 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "json2typescript": "^1.0.5"
+    "json2typescript": "^1.0.5",
+    "request": "^2.85.0",
+    "request-promise-native": "^1.0.5"
   }
 }
