@@ -1,5 +1,6 @@
 import { User } from './User';
 import { Tag } from './Tag';
+import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
@@ -11,9 +12,11 @@ export class Link {
 	 * @type {string}
 	 * @memberof Link
 	 */
-	public state: string; // TODO: verified is known, what about other states?
+	@JsonProperty('state', String)
+	public state: string = ''; // TODO: verified is known, what about other states?
 
-	private _userId: number;
+	@JsonProperty('user_id', Number)
+	private _user: number = 0;
 
 	/**
 	 * The user associated with this link
@@ -26,7 +29,8 @@ export class Link {
 		return new User();
 	}
 
-	private _tagId: number;
+	@JsonProperty('tag_id', Number)
+	private _tag: number = 0;
 
 	/**
 	 * The tag associated with this link
@@ -40,7 +44,7 @@ export class Link {
 	}
 
 	@JsonProperty('created_at', String)
-	private _created: string = '1970-01-01T00:00:00.000Z';
+	private _created: string = Consts.DEFAULT_DATE;
 
 	/**
 	 * The date this link was created

@@ -1,3 +1,5 @@
+import * as Consts from '../util/Consts';
+
 import { JsonObject, JsonProperty } from 'json2typescript';
 
 @JsonObject
@@ -30,7 +32,7 @@ export class Award {
 	public label: string = '';
 
 	@JsonProperty('awarded_on', String)
-	private _awarded: string = '1970-01-01T00:00:00.000Z';
+	private _awarded: string = Consts.DEFAULT_DATE;
 
 	/**
 	 * The date the award was given on
