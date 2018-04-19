@@ -5,6 +5,7 @@ import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 
 import { Award } from '../lib/api/Award';
 import { User } from '../lib/api/User';
+import { Link } from '../lib/api/Link';
 
 describe('Award', () => {
 	let json = '{"image_url":"//derpicdn.net/media/2018/1/16/843293653e79dcf9eda164d.svg","title":"Friendship, Art, and Magic (6 Years)","id":19356,"label":"Celebrated Derpibooru\'s six year anniversary with friends.","awarded_on":"2018-01-16T07:51:13.209Z"}';
@@ -38,10 +39,17 @@ describe('User', () => {
 	});
 
 	it('should convert links to an Array<Link>', () => {
-		let user = jsonConvert.deserialize(jsonObj, User);
+		let user: User = jsonConvert.deserialize(jsonObj, User);
 		expect(user.links).to.be.a('Array');
-		let link = user.links[0];
+		let link: Link = user.links[0];
 		expect(link).to.haveOwnProperty('state');
 		expect(link.created).to.be.a('Date');
+	});
+
+	it('should convert awards to an Array<Award>', () => {
+		let user: User = jsonConvert.deserialize(jsonObj, User);
+		expect(user.awards).to.be.a('Array');
+		let award: Award = user.awards[0];
+		expect(award.awarded).to.be.a('Date');
 	});
 });
