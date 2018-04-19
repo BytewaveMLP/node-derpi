@@ -1,6 +1,7 @@
 import { User } from './User';
 import { Comment } from './Comment';
 import { Tag } from './Tag';
+import { ImageRepresentations } from './ImageRepresentations';
 import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
@@ -99,6 +100,33 @@ export class Image {
 	 */
 	@JsonProperty('description', String)
 	public description: string = '';
+
+	@JsonProperty('aspect_ratio', Number)
+	public aspectRatio: number = 0;
+
+	@JsonProperty('original_format', String)
+	public originalFormat: string = '';
+
+	@JsonProperty('mime_type', String)
+	public mimeType: string = '';
+
+	@JsonProperty('sha512_hash', String)
+	public sha512: string = '';
+
+	@JsonProperty('orig_sha512_hash', String)
+	public sha512Original: string = '';
+
+	@JsonProperty('source_url', String)
+	public source: string = '';
+
+	@JsonProperty('representations', ImageRepresentations)
+	public representations: ImageRepresentations = new ImageRepresentations();
+
+	@JsonProperty('is_rendered', Boolean)
+	public isRendered: boolean = false;
+
+	@JsonProperty('is_optimized', Boolean)
+	public isOptimized: boolean = false;
 
 	@JsonProperty('uploader_id', Number)
 	private _uploader: number = 0;
