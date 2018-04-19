@@ -25,10 +25,12 @@ export class Link {
 	 * @type {User}
 	 * @memberof Link
 	 */
-	get user(): User {
+	get user(): User { // TODO: fetch
 		return new User();
 	}
 
+	// This technically shouldn't be used here and tag names would be preferred instead, however we aren't provided a tag name here.
+	// @byte[] please fix the Derpi API
 	@JsonProperty('tag_id', Number)
 	private _tag: number = 0;
 
@@ -39,7 +41,7 @@ export class Link {
 	 * @type {Tag}
 	 * @memberof Link
 	 */
-	get tag(): Tag {
+	get tag(): Tag { // TODO: fetch
 		return new Tag();
 	}
 
