@@ -1,6 +1,8 @@
 import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { URLConverter } from '../util/URLConverter';
+import { DateConverter } from '../util/DateConverter';
 
 @JsonObject
 export class Award {
@@ -20,7 +22,7 @@ export class Award {
 	 * @memberof Award
 	 */
 	@JsonProperty('id', Number)
-	public id: number = -1;
+	public id: number = 0;
 
 	/**
 	 * The award's description, if any
@@ -31,22 +33,14 @@ export class Award {
 	@JsonProperty('label', String)
 	public label: string = '';
 
-	@JsonProperty('awarded_on', String)
-	private _awarded: string = Consts.DEFAULT_DATE;
-
 	/**
-	 * The date the award was given on
+	 * The date this award was achieved by the user
 	 *
-	 * @readonly
 	 * @type {Date}
 	 * @memberof Award
 	 */
-	get awarded(): Date {
-		return new Date(this._awarded);
-	}
-
-	@JsonProperty('image_url', String)
-	private _image: string = '';
+	@JsonProperty('awarded_on', DateConverter)
+	public awarded: Date = new Date(0);
 
 	/**
 	 * The image URL for the ward
@@ -55,7 +49,6 @@ export class Award {
 	 * @type {string}
 	 * @memberof Award
 	 */
-	get image(): string {
-		return 'https:' + this._image;
-	}
+	@JsonProperty('image_url', URLConverter)
+	public image: string = '';
 }

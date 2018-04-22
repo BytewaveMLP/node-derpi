@@ -3,12 +3,13 @@ import { Comment } from './Comment';
 import { Tag } from './Tag';
 import { ImageRepresentations } from './ImageRepresentations';
 import * as Consts from '../util/Consts';
+import { DateConverter } from '../util/DateConverter';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
 export class Image {
 	/**
-	 *
+	 * The internal ID of the image
 	 *
 	 * @type {number}
 	 * @memberof Image
@@ -101,32 +102,113 @@ export class Image {
 	@JsonProperty('description', String)
 	public description: string = '';
 
+	/**
+	 * The aspect ratio of the image
+	 *
+	 * @type {number}
+	 * @memberof Image
+	 */
 	@JsonProperty('aspect_ratio', Number)
 	public aspectRatio: number = 0;
 
+	/**
+	 * The format the image was originally in before being uploaded to Deribooru
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('original_format', String)
 	public originalFormat: string = '';
 
+	/**
+	 * The MIME type of the image
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('mime_type', String)
 	public mimeType: string = '';
 
+	/**
+	 * The current SHA-512 hash of the image
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('sha512_hash', String)
 	public sha512: string = '';
 
+	/**
+	 * The SHA-512 hash of the original image without optimizations
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('orig_sha512_hash', String)
 	public sha512Original: string = '';
 
+	/**
+	 * THe source of the image, if specified by the uploader
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('source_url', String)
 	public source: string = '';
 
+	/**
+	 * The different possible representations of the image
+	 *
+	 * @type {ImageRepresentations}
+	 * @memberof Image
+	 */
 	@JsonProperty('representations', ImageRepresentations)
 	public representations: ImageRepresentations = new ImageRepresentations();
 
+	/**
+	 * Whether the image has been rendered by Derpibooru
+	 *
+	 * @type {boolean}
+	 * @memberof Image
+	 */
 	@JsonProperty('is_rendered', Boolean)
 	public isRendered: boolean = false;
 
+	/**
+	 * Whether the image has finished being optimized by Derpibooru
+	 *
+	 * @type {boolean}
+	 * @memberof Image
+	 */
 	@JsonProperty('is_optimized', Boolean)
 	public isOptimized: boolean = false;
+
+	/**
+	 * When the image was uploaded to the site
+	 *
+	 * @type {Date}
+	 * @memberof Image
+	 */
+	@JsonProperty('created_at', DateConverter)
+	public created: Date = new Date(0);
+
+	/**
+	 * When the image details were last edited
+	 *
+	 * @type {Date}
+	 * @memberof Image
+	 */
+	@JsonProperty('updated_at', DateConverter)
+	public updated: Date = new Date(0);
+
+	/**
+	 * When the image was first seen
+	 *
+	 * @type {Date}
+	 * @memberof Image
+	 */
+	@JsonProperty('first_seen_at', DateConverter)
+	public firstSeen: Date = new Date(0);
 
 	@JsonProperty('uploader_id', Number)
 	private _uploader: number = 0;
@@ -140,46 +222,6 @@ export class Image {
 	 */
 	get uploader(): User { // TODO: fetch
 		return new User();
-	}
-
-	@JsonProperty('created_at')
-	private _created: string = Consts.DEFAULT_DATE;
-
-	/**
-	 * The date this image was uploaded to Derpibooru
-	 *
-	 * @readonly
-	 * @type {Date}
-	 * @memberof Image
-	 */
-	get created(): Date {
-		return new Date(this._created);
-	}
-
-	private _updated: string;
-
-	/**
-	 * The date this image was last edited
-	 *
-	 * @readonly
-	 * @type {Date}
-	 * @memberof Image
-	 */
-	get updated(): Date {
-		return new Date(this._updated);
-	}
-
-	private _firstSeen: string;
-
-	/**
-	 * The date this image was first seen
-	 *
-	 * @readonly
-	 * @type {Date}
-	 * @memberof Image
-	 */
-	get firstSeen(): Date {
-		return new Date(this._firstSeen);
 	}
 
 	@JsonProperty('tag_ids', [Number])

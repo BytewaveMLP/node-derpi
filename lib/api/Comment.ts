@@ -3,6 +3,7 @@ import { Image } from './Image';
 import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { DateConverter } from '../util/DateConverter';
 
 export class Comment {
 	/**
@@ -32,19 +33,14 @@ export class Comment {
 	@JsonProperty('deleted', Boolean)
 	public deleted: boolean = false;
 
-	@JsonProperty('posted_at', String)
-	private _posted: string = Consts.DEFAULT_DATE;
-
 	/**
-	 * The date this comment was posted
+	 * The date the comment was posted on
 	 *
-	 * @readonly
 	 * @type {Date}
 	 * @memberof Comment
 	 */
-	get posted(): Date {
-		return new Date(this._posted);
-	}
+	@JsonProperty('posted_at', DateConverter)
+	public posted: Date = new Date(0);
 
 	@JsonProperty('author', String)
 	private _author: string = '';
@@ -56,7 +52,7 @@ export class Comment {
 	 * @type {User}
 	 * @memberof Comment
 	 */
-	get author(): User {
+	get author(): User { // TODO: fetch
 		return new User();
 	}
 
@@ -70,7 +66,7 @@ export class Comment {
 	 * @type {Image}
 	 * @memberof Comment
 	 */
-	get image(): Image {
+	get image(): Image { // TODO: fetch
 		return new Image();
 	}
 }

@@ -3,6 +3,7 @@ import { Tag } from './Tag';
 import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { DateConverter } from '../util/DateConverter';
 
 @JsonObject
 export class Link {
@@ -14,6 +15,15 @@ export class Link {
 	 */
 	@JsonProperty('state', String)
 	public state: string = ''; // TODO: verified is known, what about other states?
+
+	/**
+	 * When the link was first established
+	 *
+	 * @type {Date}
+	 * @memberof Link
+	 */
+	@JsonProperty('created_at', DateConverter)
+	public created: Date = new Date(0);
 
 	@JsonProperty('user_id', Number)
 	private _user: number = 0;
@@ -43,19 +53,5 @@ export class Link {
 	 */
 	get tag(): Tag { // TODO: fetch
 		return new Tag();
-	}
-
-	@JsonProperty('created_at', String)
-	private _created: string = Consts.DEFAULT_DATE;
-
-	/**
-	 * The date this link was created
-	 *
-	 * @readonly
-	 * @type {Date}
-	 * @memberof Link
-	 */
-	get created(): Date {
-		return new Date(this._created);
 	}
 }

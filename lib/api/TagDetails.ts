@@ -1,6 +1,7 @@
 import { Tag } from './Tag';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { URLConverter } from '../util/URLConverter';
 
 @JsonObject
 export class TagDetails {
@@ -28,6 +29,9 @@ export class TagDetails {
 	@JsonProperty('category', String)
 	public category: string = '';
 
+	@JsonProperty('spoiler_image_url', URLConverter)
+	public spoilerImage: string = '';
+
 	@JsonProperty('implied_tag_ids', [Number])
 	private _impliedTags: number[] = new Array<number>();
 
@@ -43,12 +47,5 @@ export class TagDetails {
 		if (this._aliasedTo === -1) return null;
 		// TODO: deserialize tag
 		return new Tag();
-	}
-
-	@JsonProperty('spoiler_image_url', String)
-	private _spoilerImage: string = '';
-
-	get spoilerImage(): string {
-		return 'https:' + this._spoilerImage;
 	}
 }
