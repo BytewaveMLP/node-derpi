@@ -2,6 +2,7 @@ import { Link } from './Link';
 import { Award } from './Award';
 import { URLConverter } from '../util/URLConverter';
 import { DateConverter } from '../util/DateConverter';
+import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
@@ -123,5 +124,5 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('created_at', DateConverter)
-	public created: Date = new Date(0);
+	public created: Date = Consts.DEFAULT_DATE;
 }

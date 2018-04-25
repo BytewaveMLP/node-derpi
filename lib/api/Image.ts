@@ -148,7 +148,7 @@ export class Image {
 	public sha512Original: string = '';
 
 	/**
-	 * THe source of the image, if specified by the uploader
+	 * The source of the image, if specified by the uploader
 	 *
 	 * @type {string}
 	 * @memberof Image
@@ -190,7 +190,7 @@ export class Image {
 	 * @memberof Image
 	 */
 	@JsonProperty('created_at', DateConverter)
-	public created: Date = new Date(0);
+	public created: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * When the image details were last edited
@@ -199,7 +199,7 @@ export class Image {
 	 * @memberof Image
 	 */
 	@JsonProperty('updated_at', DateConverter)
-	public updated: Date = new Date(0);
+	public updated: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * When the image was first seen
@@ -208,7 +208,7 @@ export class Image {
 	 * @memberof Image
 	 */
 	@JsonProperty('first_seen_at', DateConverter)
-	public firstSeen: Date = new Date(0);
+	public firstSeen: Date = Consts.DEFAULT_DATE;
 
 	@JsonProperty('uploader_id', Number)
 	private _uploader: number = 0;

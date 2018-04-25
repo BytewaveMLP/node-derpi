@@ -40,7 +40,7 @@ export class Award {
 	 * @memberof Award
 	 */
 	@JsonProperty('awarded_on', DateConverter)
-	public awarded: Date = new Date(0);
+	public awarded: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * The image URL for the ward

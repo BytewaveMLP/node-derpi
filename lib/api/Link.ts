@@ -23,7 +23,7 @@ export class Link {
 	 * @memberof Link
 	 */
 	@JsonProperty('created_at', DateConverter)
-	public created: Date = new Date(0);
+	public created: Date = Consts.DEFAULT_DATE;
 
 	@JsonProperty('user_id', Number)
 	private _user: number = 0;

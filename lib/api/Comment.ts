@@ -40,7 +40,7 @@ export class Comment {
 	 * @memberof Comment
 	 */
 	@JsonProperty('posted_at', DateConverter)
-	public posted: Date = new Date(0);
+	public posted: Date = Consts.DEFAULT_DATE;
 
 	@JsonProperty('author', String)
 	private _author: string = '';

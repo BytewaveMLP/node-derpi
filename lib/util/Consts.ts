@@ -1,1 +1,3 @@
-export const DEFAULT_DATE: string = new Date(0).toISOString();
+export const DEFAULT_DATE = new Date(0);
+
+export const USER_AGENT = 'node-derpi/' + require('../../package.json').version;
