@@ -114,7 +114,7 @@ export class User {
 	 * @type {string}
 	 * @memberof User
 	 */
-	@JsonProperty('avatar', URLConverter)
+	@JsonProperty('avatar_url', URLConverter)
 	public avatar: string = '';
 
 	/**
