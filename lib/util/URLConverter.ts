@@ -7,6 +7,7 @@ export class URLConverter implements JsonCustomConvert<String> {
 	}
 
 	deserialize(link: any): string {
+		if (link === null || link === undefined || link === '') return '';
 		return 'https:' + link;
 	}
 }

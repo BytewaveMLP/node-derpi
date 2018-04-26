@@ -29,7 +29,7 @@ export class TagDetails {
 	@JsonProperty('category', String)
 	public category: string = '';
 
-	@JsonProperty('spoiler_image_url', URLConverter)
+	@JsonProperty('spoiler_image_uri', URLConverter)
 	public spoilerImage: string = '';
 
 	@JsonProperty('implied_tag_ids', [Number])
@@ -40,7 +40,7 @@ export class TagDetails {
 		return new Array<Tag>();
 	}
 
-	@JsonProperty('alised_to_id', Number)
+	@JsonProperty('aliased_to_id', Number)
 	private _aliasedTo: number = -1;
 
 	get aliasedTo(): Tag | null {
