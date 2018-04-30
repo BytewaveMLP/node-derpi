@@ -15,43 +15,38 @@ export class Fetch {
 	}
 
 	public async fetchUser(identifier: string | number): Promise<User> {
-		return new Promise<User>((resolve, reject) => {
-			const options = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, {
-				uri: URLs.USER_URL.replace('{}', (identifier as string))
-			});
-
-			request.get(options, (err: any, response: request.Response, body: any) => {
-				if (err) {
-					reject(err);
-				} else {
-					const status = response.statusCode;
-					if (status !== Consts.HTTP_200_OK && status !== Consts.HTTP_301_MOVED_PERMANENTLY) {
-						reject(new Error(`Received status code ${status}`));
-					} else {
-						resolve(this.jsonConvert.deserializeObject(body, User));
-					}
-				}
-			});
+		const options = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, {
+			uri: URLs.USER_URL.replace('{}', (identifier as string))
 		});
+
+		const json = await this.fetchJSON(options);
+		return this.jsonConvert.deserializeObject(json, User);
 	}
 
 	public async fetchTag(identifier: string | number): Promise<Tag> {
-		return new Promise<Tag>((resolve, reject) => {
-			const options = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, {
-				uri: URLs.TAG_URL.replace('{}', (identifier as string))
-			});
+		const options = {
+			uri: URLs.TAG_URL.replace('{}', (identifier as string))
+		};
 
-			request.get(options, (err: any, response: request.Response, body: any) => {
+		const json = await this.fetchJSON(options);
+		return this.jsonConvert.deserializeObject(json, Tag);
+	}
+
+	private async fetchJSON(options: request.UriOptions): Promise<any> {
+		return new Promise<any>((resolve, reject) => {
+			const opts = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
+
+			request.get(opts, (err: any, response: request.Response, body: any) => {
 				if (err) {
-					reject(err);
-				} else {
-					const status = response.statusCode;
-					if (status !== Consts.HTTP_200_OK && status !== Consts.HTTP_301_MOVED_PERMANENTLY) {
-						reject(new Error(`Received status code ${status}`));
-					} else {
-						resolve(this.jsonConvert.deserializeObject(body, Tag));
-					}
+					return reject(err);
 				}
+
+				const status = response.statusCode;
+				if (status !== Consts.HTTP_200_OK && status !== Consts.HTTP_301_MOVED_PERMANENTLY) {
+					return reject(new Error(`Received status code ${status}`));
+				}
+
+				return resolve(body);
 			});
 		});
 	}

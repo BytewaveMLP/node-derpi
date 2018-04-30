@@ -62,9 +62,7 @@ describe('HTTP fetching', () => {
 
 	describe('fetchUser', () => {
 		it('should fetch a valid user', () => {
-			fetch.fetchUser('Bytewave').then((user: User) => {
-				expect(user.name).to.equal('Bytewave');
-			});
+			return expect(fetch.fetchUser('Bytewave')).to.eventually.have.property('name');
 		});
 	});
 });
