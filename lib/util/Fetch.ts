@@ -20,6 +20,7 @@ export class Fetch {
 		});
 
 		const json = await this.fetchJSON(options);
+		throw new Error('test');
 		return this.jsonConvert.deserializeObject(json, User);
 	}
 

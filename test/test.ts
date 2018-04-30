@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import { use, expect } from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
@@ -7,6 +8,8 @@ import { Award } from '../lib/api/Award';
 import { User } from '../lib/api/User';
 import { Link } from '../lib/api/Link';
 import { Fetch } from '../lib/util/Fetch';
+
+use(chaiAsPromised);
 
 describe('Data classes', () => {
 	describe('Award', () => {
@@ -62,7 +65,10 @@ describe('HTTP fetching', () => {
 
 	describe('fetchUser', () => {
 		it('should fetch a valid user', () => {
-			return expect(fetch.fetchUser('Bytewave')).to.eventually.have.property('name');
+			return expect(fetch.fetchUser('Bytewave'))
+				.to.be.fulfilled
+				.and.to.eventually.have.property('name')
+				.that.equals('Bytewave');
 		});
 	});
 });
