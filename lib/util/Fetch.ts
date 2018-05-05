@@ -30,9 +30,9 @@ export class Fetch {
 	 * @returns {Promise<Image>} A Promise wrapping the fetched image
 	 * @memberof Fetch
 	 */
-	public static async fetchImage(id: string): Promise<Image> {
+	public static async fetchImage(id: string | number): Promise<Image> {
 		const options = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, {
-			uri: URLs.IMAGE_URL.replace('{}', id)
+			uri: URLs.IMAGE_URL.replace('{}', (id as string))
 		});
 
 		const json = await this.fetchJSON(options);
@@ -47,9 +47,9 @@ export class Fetch {
 	 * @returns {Promise<User>} A Promise wrapping the fetched user
 	 * @memberof Fetch
 	 */
-	public static async fetchUser(identifier: string): Promise<User> {
+	public static async fetchUser(identifier: string | number): Promise<User> {
 		const options = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, {
-			uri: URLs.USER_URL.replace('{}', identifier)
+			uri: URLs.USER_URL.replace('{}', (identifier as string))
 		});
 
 		const json = await this.fetchJSON(options);
@@ -64,9 +64,9 @@ export class Fetch {
 	 * @returns {Promise<Tag>} A Promise wrapping the fetched tag
 	 * @memberof Fetch
 	 */
-	public static async fetchTag(identifier: string): Promise<Tag> {
+	public static async fetchTag(identifier: string | number): Promise<Tag> {
 		const options = {
-			uri: URLs.TAG_URL.replace('{}', identifier)
+			uri: URLs.TAG_URL.replace('{}', (identifier as string))
 		};
 
 		const json = await this.fetchJSON(options);

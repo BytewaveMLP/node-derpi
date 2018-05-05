@@ -4,6 +4,7 @@ import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { DateConverter } from '../util/DateConverter';
+import { Fetch } from '..';
 
 export class Comment {
 	/**
@@ -45,28 +46,38 @@ export class Comment {
 	@JsonProperty('author', String)
 	private _author: string = '';
 
-	/**
-	 * The author of this comment
-	 *
-	 * @readonly
-	 * @type {User}
-	 * @memberof Comment
-	 */
-	get author(): User { // TODO: fetch
-		return new User();
-	}
-
 	@JsonProperty('image_id', Number)
 	private _image: number = 0;
 
 	/**
-	 * The image this comment belongs to
+	 * Gets the author of this comment
 	 *
-	 * @readonly
-	 * @type {Image}
-	 * @memberof Comment
+	 * @returns {Promise<User>} A Promise wrapping the user that posted this comment
+	 * @memberof Image
 	 */
-	get image(): Image { // TODO: fetch
-		return new Image();
+	public async author(): Promise<User> { // TODO: fetch
+		// Part II of the Background Pony saga:
+		// comments_home.json does NOT provide me with the user ID of the uploader, just the name
+		// Is this a **user** with the name Background Pony #whatever, or is it a real anonymous user??
+		// We're just going to assume the latter and hope nobody breaks anything.
+		if (this._author.match(/Background Pony \#[0-9A-Z]+/)) {
+			let user = new User();
+			user.name = this._author;
+			return user;
+		}
+
+		let user = await Fetch.fetchUser(this._author);
+
+		return user;
+	}
+
+	/**
+	 * Gets the image this comment belongs to
+	 *
+	 * @returns {Promise<Image>} A Promise wrapping the image this comment was posted on
+	 * @memberof Image
+	 */
+	public async image(): Promise<Image> {
+		return Fetch.fetchImage(this._image);
 	}
 }

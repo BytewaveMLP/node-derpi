@@ -217,14 +217,16 @@ export class Image {
 	@JsonProperty('uploader_id', Number)
 	private _uploaderId: number = 0;
 
+	@JsonProperty('tag_ids', [Number])
+	private _tags: number[] = new Array<number>();
+
 	/**
-	 * The user that uploaded this image
+	 * Gets the user that uploaded the image
 	 *
-	 * @readonly
-	 * @type {User}
+	 * @returns {Promise<User>} A Promise wrapping the uploader's details
 	 * @memberof Image
 	 */
-	get uploader(): User {
+	public async uploader(): Promise<User> {
 		// Today I learned: Background Pony is a valid uploader for uploads originating from guest accounts, **HOWEVER**
 		// it is ALSO a valid login name (see: https://derpibooru.org/profiles/Background%20Pony).
 		// So, I have to store both the uploader **and** uploader ID here to make sure both are set to values indicating a guest.
@@ -233,26 +235,18 @@ export class Image {
 			return new User();
 		}
 
-		Fetch.fetchUser(this._uploader).catch((err: any) => {
-			throw err;
-		}).then((user: User) => {
-			return user;
-		});
+		let user = await Fetch.fetchUser(this._uploader);
 
-		return new User();
+		return user;
 	}
 
-	@JsonProperty('tag_ids', [Number])
-	private _tags: number[] = new Array<number>();
-
 	/**
-	 * The tags on the image
+	 * Gets the tags on the image
 	 *
-	 * @readonly
-	 * @type {Tag[]}
+	 * @returns {Promise<Tag>} A Promise wrapping the tags on the image
 	 * @memberof Image
 	 */
-	get tags(): Tag[] { // TODO: fetch
+	public async tags(): Promise<Tag[]> {
 		return new Array<Tag>();
 	}
 }
