@@ -53,7 +53,7 @@ export class Comment {
 	 * Gets the author of this comment
 	 *
 	 * @returns {Promise<User>} A Promise wrapping the user that posted this comment
-	 * @memberof Image
+	 * @memberof Comment
 	 */
 	public async author(): Promise<User> {
 		// Part II of the Background Pony saga:
@@ -75,7 +75,7 @@ export class Comment {
 	 * Gets the image this comment belongs to
 	 *
 	 * @returns {Promise<Image>} A Promise wrapping the image this comment was posted on
-	 * @memberof Image
+	 * @memberof Comment
 	 */
 	public async image(): Promise<Image> {
 		return Fetch.fetchImage(this._image);

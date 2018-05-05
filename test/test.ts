@@ -85,6 +85,21 @@ describe('HTTP fetching', () => {
 				.and.to.eventually.have.property('id')
 				.that.equals(1587999);
 		});
+
+		it('should fetch the tags on an image', (done) => {
+			Fetch.fetchImage('1587999').then(image => {
+				image.tags().then(tags => {
+					tags.next().value.then(tag => {
+						try {
+							expect(tag.details).to.have.property('name');
+							done();
+						} catch (err) {
+							done(err);
+						}
+					});
+				});
+			});
+		});
 	});
 
 	describe('fetchTag', () => {

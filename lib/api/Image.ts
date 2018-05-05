@@ -7,6 +7,7 @@ import { DateConverter } from '../util/DateConverter';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '../util/Fetch';
+import { TagCollection } from '../util/TagCollection';
 
 export class Image {
 	/**
@@ -243,10 +244,10 @@ export class Image {
 	/**
 	 * Gets the tags on the image
 	 *
-	 * @returns {Promise<Tag>} A Promise wrapping the tags on the image
+	 * @returns {Promise<TagCollection>} A Promise wrapping the tags on the image
 	 * @memberof Image
 	 */
-	public async tags(): Promise<Tag[]> {
-		return new Array<Tag>();
+	public async tags(): Promise<TagCollection> {
+		return new TagCollection(this._tags);
 	}
 }

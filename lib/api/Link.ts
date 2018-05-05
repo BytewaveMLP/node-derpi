@@ -28,30 +28,28 @@ export class Link {
 	@JsonProperty('user_id', Number)
 	private _user: number = 0;
 
-	/**
-	 * The user associated with this link
-	 *
-	 * @readonly
-	 * @type {User}
-	 * @memberof Link
-	 */
-	get user(): User { // TODO: fetch
-		return new User();
-	}
-
 	// This technically shouldn't be used here and tag names would be preferred instead, however we aren't provided a tag name here.
 	// @byte[] please fix the Derpi API
 	@JsonProperty('tag_id', Number)
 	private _tag: number = 0;
 
 	/**
-	 * The tag associated with this link
+	 * Gets the user associated with this link
 	 *
-	 * @readonly
-	 * @type {Tag}
+	 * @returns {Promise<Tag>} A Promise wrapping the user this link is associated with
 	 * @memberof Link
 	 */
-	get tag(): Tag { // TODO: fetch
+	public async user(): Promise<User> {
+		return new User();
+	}
+
+	/**
+	 * Gets the tag associated with this link
+	 *
+	 * @returns {Promise<Tag>} A Promise wrapping the tag this link is associated with
+	 * @memberof Link
+	 */
+	public async tag(): Promise<Tag> {
 		return new Tag();
 	}
 }
