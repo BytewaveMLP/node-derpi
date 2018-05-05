@@ -1,3 +1,9 @@
+/**
+ * These tests kind of suck.
+ * I'm slowly working on them, but I really don't have much experience with this kind of stuff.
+ * If anyone wants to help out and write tests, it would be much appreciated!
+ */
+
 import { use, expect } from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 import 'mocha';
