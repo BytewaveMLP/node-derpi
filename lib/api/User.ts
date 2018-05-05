@@ -15,7 +15,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('id', Number)
-	public id: number = 0;
+	public id: number = -1;
 
 	/**
 	 * The display name of the user
@@ -24,7 +24,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('name', String)
-	public name: string = '';
+	public name: string = 'Background Pony';
 
 	/**
 	 * The user's "slug" (for pretty URLs)
@@ -33,7 +33,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('slug', String)
-	public slug: string = '';
+	public slug: string = 'Background-Pony';
 
 	/**
 	 * The role of the user
@@ -115,7 +115,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('avatar_url', URLConverter)
-	public avatar: string = '';
+	public avatar: string = 'https://derpicdn.net/avatars/2016/02/28/03_09_08_673_Bildschirmfoto_2016_02_28_um_03.07.54.png';
 
 	/**
 	 * The date the user joined the site

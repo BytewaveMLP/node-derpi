@@ -6,6 +6,7 @@ import * as Consts from '../util/Consts';
 import { DateConverter } from '../util/DateConverter';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { Fetch } from '../util/Fetch';
 
 export class Image {
 	/**
@@ -50,7 +51,7 @@ export class Image {
 	 * @type {number}
 	 * @memberof Image
 	 */
-	@JsonProperty('favorites', Number)
+	@JsonProperty('faves', Number)
 	public favorites: number = 0;
 
 	/**
@@ -210,8 +211,11 @@ export class Image {
 	@JsonProperty('first_seen_at', DateConverter)
 	public firstSeen: Date = Consts.DEFAULT_DATE;
 
+	@JsonProperty('uploader', String)
+	private _uploader: string = '';
+
 	@JsonProperty('uploader_id', Number)
-	private _uploader: number = 0;
+	private _uploaderId: number = 0;
 
 	/**
 	 * The user that uploaded this image
@@ -220,7 +224,21 @@ export class Image {
 	 * @type {User}
 	 * @memberof Image
 	 */
-	get uploader(): User { // TODO: fetch
+	get uploader(): User {
+		// Today I learned: Background Pony is a valid uploader for uploads originating from guest accounts, **HOWEVER**
+		// it is ALSO a valid login name (see: https://derpibooru.org/profiles/Background%20Pony).
+		// So, I have to store both the uploader **and** uploader ID here to make sure both are set to values indicating a guest.
+		// This API is going to drive me insane.
+		if (this._uploader === 'Background Pony' && this._uploaderId === null) {
+			return new User();
+		}
+
+		Fetch.fetchUser(this._uploader).catch((err: any) => {
+			throw err;
+		}).then((user: User) => {
+			return user;
+		});
+
 		return new User();
 	}
 

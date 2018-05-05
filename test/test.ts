@@ -61,14 +61,33 @@ describe('Data classes', () => {
 });
 
 describe('HTTP fetching', () => {
-	let fetch = new Fetch();
+	Fetch.setup();
 
 	describe('fetchUser', () => {
 		it('should fetch a valid user', () => {
-			return expect(fetch.fetchUser('Bytewave'))
+			return expect(Fetch.fetchUser('Bytewave'))
 				.to.be.fulfilled
 				.and.to.eventually.have.property('name')
 				.that.equals('Bytewave');
+		});
+	});
+
+	describe('fetchImage', () => {
+		it('should fetch a valid image', () => {
+			return expect(Fetch.fetchImage('1587999'))
+				.to.be.fulfilled
+				.and.to.eventually.have.property('id')
+				.that.equals(1587999);
+		});
+	});
+
+	describe('fetchTag', () => {
+		it('should fetch a valid tag', () => {
+			return expect(Fetch.fetchTag('rainbow dash'))
+				.to.be.fulfilled
+				.and.to.eventually.have.property('details')
+				.that.has.property('name')
+				.that.equals('rainbow dash');
 		});
 	});
 });
