@@ -80,23 +80,24 @@ describe('HTTP fetching', () => {
 
 	describe('fetchImage', () => {
 		it('should fetch a valid image', () => {
-			return expect(Fetch.fetchImage('1587999'))
+			return expect(Fetch.fetchImage(1587999))
 				.to.be.fulfilled
 				.and.to.eventually.have.property('id')
 				.that.equals(1587999);
 		});
 
 		it('should fetch the tags on an image', (done) => {
-			Fetch.fetchImage('1587999').then(image => {
-				image.tags().then(tags => {
-					tags.next().value.then(tag => {
-						try {
-							expect(tag.details).to.have.property('name');
-							done();
-						} catch (err) {
-							done(err);
-						}
-					});
+			Fetch.fetchImage(1587999).then(image => {
+				image.tags().then(async tags => {
+					let firstTag = await tags.first();
+					try {
+						expect(firstTag)
+							.to.have.property('details')
+							.that.has.property('name');
+						done();
+					} catch (err) {
+						done(err);
+					}
 				});
 			});
 		});
