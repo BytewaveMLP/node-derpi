@@ -55,7 +55,7 @@ export class Comment {
 	 * @returns {Promise<User>} A Promise wrapping the user that posted this comment
 	 * @memberof Image
 	 */
-	public async author(): Promise<User> { // TODO: fetch
+	public async author(): Promise<User> {
 		// Part II of the Background Pony saga:
 		// comments_home.json does NOT provide me with the user ID of the uploader, just the name
 		// Is this a **user** with the name Background Pony #whatever, or is it a real anonymous user??
