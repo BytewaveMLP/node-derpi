@@ -300,7 +300,7 @@ export class Fetch {
 		if (sortFormat === undefined) sortFormat = ResultSortFormat.CREATION_DATE;
 		if (sortOrder === undefined) sortOrder = ResultSortOrder.DESCENDING;
 		if (page === undefined) page = 0;
-		if (filterID !== undefined) filterID = DefaultFilters.DEFAULT;
+		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
 		const options: request.Options = {
 			uri: URLs.SEARCH_URL,
