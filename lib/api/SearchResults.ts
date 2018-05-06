@@ -2,6 +2,7 @@ import { Image } from './Image';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { ResultSortFormat, ResultSortOrder, Fetch } from '../util/Fetch';
+import { DefaultFilters } from '../util/DefaultFilters';
 
 /**
  * Represents a page of search results
@@ -63,6 +64,14 @@ export class SearchResults {
 	public nextPage: number = 0;
 
 	/**
+	 * The filter ID used for this search
+	 *
+	 * @type {number}
+	 * @memberof SearchResults
+	 */
+	public filterID: DefaultFilters | number = DefaultFilters.DEFAULT;
+
+	/**
 	 * Fetches the next page of results
 	 *
 	 * @returns {SearchResults}
@@ -73,7 +82,8 @@ export class SearchResults {
 			query: this.query,
 			sortFormat: this.sortFormat,
 			sortOrder: this.sortOrder,
-			page: this.nextPage
+			page: this.nextPage,
+			filterID: this.filterID
 		});
 	}
 }

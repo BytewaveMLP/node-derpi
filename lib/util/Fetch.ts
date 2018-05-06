@@ -4,12 +4,19 @@ import { Image } from '../api/Image';
 import * as URLs from '../util/URLs';
 import * as Consts from '../util/Consts';
 import * as Helpers from '../util/Helpers';
+import { SearchResults } from '../api/SearchResults';
+import { ImageComments } from '../api/ImageComments';
+import { DefaultFilters } from './DefaultFilters';
 
 import * as request from 'request';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
-import { SearchResults } from '../api/SearchResults';
-import { ImageComments } from '../api/ImageComments';
 
+/**
+ * Represents various sort formats for results
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ResultSortFormat {
 	CREATION_DATE = 'created_at',
 	SCORE = 'score',
@@ -21,16 +28,65 @@ export enum ResultSortFormat {
 	RANDOM = 'random'
 }
 
+/**
+ * Represents sort orders Derpibooru allows you tu sort results by
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ResultSortOrder {
 	ASCENDING = 'asc',
 	DESCENDING = 'desc'
 }
 
+/**
+ * Represents various options used for searching for images
+ *
+ * @export
+ * @interface SearchOptions
+ */
 export interface SearchOptions {
+	/**
+	 * The query to match against
+	 *
+	 * See https://derpibooru.org/search/syntax for syntax help
+	 *
+	 * @type {string}
+	 * @memberof SearchOptions
+	 */
 	query?: string;
+
+	/**
+	 * The sort format to use
+	 *
+	 * @type {ResultSortFormat}
+	 * @memberof SearchOptions
+	 */
 	sortFormat?: ResultSortFormat;
+
+	/**
+	 * The order to sort the results in
+	 *
+	 * @type {ResultSortOrder}
+	 * @memberof SearchOptions
+	 */
 	sortOrder?: ResultSortOrder;
+
+	/**
+	 * The page number of results to fetch
+	 *
+	 * @type {number}
+	 * @memberof SearchOptions
+	 */
 	page?: number;
+
+	/**
+	 * The filter ID to use for this request
+	 *
+	 * @type {number}
+	 * @memberof SearchOptions
+	 */
+	filterID?: DefaultFilters | number;
 }
 
 /**
@@ -148,21 +204,27 @@ export class Fetch {
 	 * @static
 	 * @param {string} identifier The name of the tag to fetch
 	 * @param {number} [page] The page of images to fetch
+	 * @param {filterID} [filterID] The filter ID to apply to results
 	 * @returns {Promise<Tag>} A Promise wrapping the fetched tag
 	 * @memberof Fetch
 	 */
-	public static async fetchTag(name: string, page?: number): Promise<Tag> {
+	public static async fetchTag(name: string, page?: number, filterID?: DefaultFilters | number): Promise<Tag> {
 		if (page === undefined) page = 1;
+		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
 		const options: request.Options = {
 			uri: URLs.TAG_URL.replace('{}', Helpers.slugify(name)),
 			qs: {
-				page: page
+				page: page,
+				filter_id: filterID
 			}
 		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
-		return this.jsonConvert.deserializeObject(json, Tag);
+		let tag = this.jsonConvert.deserializeObject(json, Tag);
+		tag.filterID = filterID;
+		tag.nextPage = page + 1;
+		return tag;
 	}
 
 	/**
@@ -174,11 +236,13 @@ export class Fetch {
 	 * @static
 	 * @param {number} id The ID of the tag to fetch
 	 * @param {number} [page] The page of images to fetch
+	 * @param {filterID} [filterID] The filter ID to apply to results
 	 * @returns {Promise<Tag>} A Promise wrapping the fetched tag
 	 * @memberof Fetch
 	 */
-	public static async fetchTagByID(id: number, page?: number): Promise<Tag> {
+	public static async fetchTagByID(id: number, page?: number, filterID?: DefaultFilters | number): Promise<Tag> {
 		if (page === undefined) page = 1;
+		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
 		let curId = '0' + id;
 
@@ -189,7 +253,8 @@ export class Fetch {
 		const options: request.Options = {
 			uri: URLs.TAG_URL.replace('{}', curId),
 			qs: {
-				page: page
+				page: page,
+				filter_id: filterID
 			}
 		};
 		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
@@ -213,7 +278,10 @@ export class Fetch {
 			this.tagIDToURLMap.set(id, curId);
 		}
 
-		return this.jsonConvert.deserializeObject(json, Tag);
+		let tag = this.jsonConvert.deserializeObject(json, Tag);
+		tag.filterID = filterID;
+		tag.nextPage = page + 1;
+		return tag;
 	}
 
 	/**
@@ -226,12 +294,13 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async search(searchOptions: SearchOptions): Promise<SearchResults> {
-		let { query, sortFormat, sortOrder, page } = searchOptions;
+		let { query, sortFormat, sortOrder, page, filterID } = searchOptions;
 
 		if (query === undefined) query = '*';
 		if (sortFormat === undefined) sortFormat = ResultSortFormat.CREATION_DATE;
 		if (sortOrder === undefined) sortOrder = ResultSortOrder.DESCENDING;
 		if (page === undefined) page = 0;
+		if (filterID !== undefined) filterID = DefaultFilters.DEFAULT;
 
 		const options: request.Options = {
 			uri: URLs.SEARCH_URL,
@@ -239,7 +308,8 @@ export class Fetch {
 				q: query,
 				sf: sortFormat,
 				sd: sortOrder,
-				page: page
+				page: page,
+				filter_id: filterID
 			}
 		};
 
@@ -249,6 +319,7 @@ export class Fetch {
 		searchResults.query = query;
 		searchResults.sortFormat = sortFormat;
 		searchResults.sortOrder = sortOrder;
+		searchResults.filterID = filterID;
 		return searchResults;
 	}
 
