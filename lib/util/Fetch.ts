@@ -296,7 +296,7 @@ export class Fetch {
 	public static async search(searchOptions: SearchOptions): Promise<SearchResults> {
 		let { query, sortFormat, sortOrder, page, filterID } = searchOptions;
 
-		if (query === undefined) query = '*';
+		if (query === undefined || query === '') query = '*';
 		if (sortFormat === undefined) sortFormat = ResultSortFormat.CREATION_DATE;
 		if (sortOrder === undefined) sortOrder = ResultSortOrder.DESCENDING;
 		if (page === undefined) page = 0;
