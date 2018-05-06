@@ -35,7 +35,7 @@ export class TagDetails {
 	public spoilerImage: string = '';
 
 	@JsonProperty('implied_tag_ids', [Number])
-	private _impliedTags: number[] = new Array<number>();
+	private _impliedTags: number[] = [];
 
 	@JsonProperty('aliased_to_id', Number)
 	private _aliasedTo: number = -1;
@@ -46,6 +46,6 @@ export class TagDetails {
 
 	public async aliasedTo(): Promise<Tag | null> {
 		if (this._aliasedTo === -1) return null;
-		return Fetch.fetchTag(this._aliasedTo);
+		return Fetch.fetchTagByID(this._aliasedTo);
 	}
 }

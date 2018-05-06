@@ -8,6 +8,7 @@ import { DateConverter } from '../util/DateConverter';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '../util/Fetch';
 import { TagCollection } from '../util/TagCollection';
+import { ImageComments } from './ImageComments';
 
 @JsonObject
 export class Image {
@@ -57,17 +58,13 @@ export class Image {
 	public favorites: number = 0;
 
 	/**
-	 * The comments posted on the image
+	 * The tags on the image, represented as a comma-separated string for convenience
 	 *
-	 * @readonly
-	 * @type {Comment[]}
+	 * @type {string}
 	 * @memberof Image
 	 */
-	get comments(): Comment[] { // TODO: fetch
-		// This should be fetched at:
-		// https://derpibooru.org/images/IMAGE_ID/comments_home.json
-		return new Array<Comment>();
-	}
+	@JsonProperty('tags', String)
+	public tagString: string = '';
 
 	/**
 	 * The width of the image
@@ -237,9 +234,7 @@ export class Image {
 			return new User();
 		}
 
-		let user = await Fetch.fetchUser(this._uploader);
-
-		return user;
+		return Fetch.fetchUserByID(this._uploaderId);
 	}
 
 	/**
@@ -250,5 +245,16 @@ export class Image {
 	 */
 	public async tags(): Promise<TagCollection> {
 		return new TagCollection(this._tags);
+	}
+
+	/**
+	 * Gets the comments on the image
+	 *
+	 * @param {(number | undefined)} page The page number of comments to fetch (max appears to be total / 20 for non-logged-in users)
+	 * @returns {Promise<ImageComments>}
+	 * @memberof Image
+	 */
+	public async comments(page: number | undefined): Promise<ImageComments> {
+		return Fetch.fetchComments(this.id, page);
 	}
 }

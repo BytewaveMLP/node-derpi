@@ -96,7 +96,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('links', [Link])
-	public links: Link[] = new Array<Link>();
+	public links: Link[] = [];
 
 	/**
 	 * The awards the user has earned
@@ -105,7 +105,7 @@ export class User {
 	 * @memberof User
 	 */
 	@JsonProperty('awards', [Award])
-	public awards: Award[] = new Array<Award>();
+	public awards: Award[] = [];
 
 	/**
 	 * The user's avatar

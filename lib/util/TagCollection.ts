@@ -7,8 +7,7 @@ export class TagCollection extends Collection<number, Tag> {
 		let tag = this._cache.get(id);
 
 		if (!tag) {
-			Fetch.setup();
-			tag = await Fetch.fetchTag(id);
+			tag = await Fetch.fetchTagByID(id);
 			this._cache.set(id, tag);
 		}
 

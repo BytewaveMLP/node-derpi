@@ -3,10 +3,12 @@ import { Tag } from '../api/Tag';
 import { Image } from '../api/Image';
 import * as URLs from '../util/URLs';
 import * as Consts from '../util/Consts';
+import * as Helpers from '../util/Helpers';
 
 import * as request from 'request';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
-import { SearchResults } from '..';
+import { SearchResults } from '../api/SearchResults';
+import { ImageComments } from '../api/ImageComments';
 
 export enum ResultSortFormat {
 	CREATION_DATE = 'created_at',
@@ -31,8 +33,12 @@ export interface SearchOptions {
 	page?: number;
 }
 
+const MAXIUMUM_ID_FETCH_RETRIES = 10;
+
 export class Fetch {
 	private static jsonConvert: JsonConvert = new JsonConvert();
+	private static tagIDToURLMap: Map<number, string> = new Map<number, string>();
+	private static userIDToURLMap: Map<number, string> = new Map<number, string>();
 
 	/**
 	 * Sets up some basic settings for the Fetch instance
@@ -64,16 +70,16 @@ export class Fetch {
 	}
 
 	/**
-	 * Fetches a user and their associated details
+	 * Fetches a user and their associated details by name
 	 *
 	 * @static
-	 * @param {string} identifier The username or ID of the user to fetch
+	 * @param {string} identifier The username of the user to fetch
 	 * @returns {Promise<User>} A Promise wrapping the fetched user
 	 * @memberof Fetch
 	 */
-	public static async fetchUser(identifier: string | number): Promise<User> {
+	public static async fetchUser(username: string): Promise<User> {
 		const options: request.Options = {
-			uri: URLs.USER_URL.replace('{}', (identifier as string))
+			uri: URLs.USER_URL.replace('{}', Helpers.slugify(username))
 		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
@@ -81,22 +87,133 @@ export class Fetch {
 	}
 
 	/**
-	 * Fetches a tag and its associated details
+	 * Fetches a user and its associated details by ID
+	 *
+	 * THIS IS A VERY VERY VERY DIRTY HACK, BUT DERPIBOORU'S API DESIGN REQUIRES ITS EXISTENCE!
+	 * I'M SORRY!
 	 *
 	 * @static
-	 * @param {string} identifier The name or ID of the tag to fetch
+	 * @param {number} id The ID of the user to fetch
+	 * @returns {Promise<Tag>} A Promise wrapping the fetched user
+	 * @memberof Fetch
+	 */
+	public static async fetchUserByID(id: number): Promise<User> {
+		let curId = '0' + id;
+
+		if (this.userIDToURLMap.has(id)) {
+			curId = (this.userIDToURLMap.get(id) as string);
+		}
+
+		const options: request.Options = {
+			uri: URLs.USER_URL.replace('{}', curId)
+		};
+		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
+		let json = await this.fetchJSON(requestOptions);
+
+		let loopCount = 0;
+
+		while (json.id !== id) {
+			curId = '0' + curId;
+			requestOptions.uri = URLs.USER_URL.replace('{}', curId);
+			json = await this.fetchJSON(requestOptions);
+
+			loopCount++;
+
+			if (loopCount >= MAXIUMUM_ID_FETCH_RETRIES) {
+				throw new Error('Maximum number of fetch attempts exceeded - blame Derpibooru for allowing name -> ID collisions.');
+			}
+		}
+
+		if (!this.userIDToURLMap.has(id)) {
+			this.userIDToURLMap.set(id, curId);
+		}
+
+		return this.jsonConvert.deserializeObject(json, User);
+	}
+
+	/**
+	 * Fetches a tag and its associated details by name
+	 *
+	 * @static
+	 * @param {string} identifier The name of the tag to fetch
+	 * @param {number} [page] The page of images to fetch
 	 * @returns {Promise<Tag>} A Promise wrapping the fetched tag
 	 * @memberof Fetch
 	 */
-	public static async fetchTag(identifier: string | number): Promise<Tag> {
-		const options: request.UriOptions = {
-			uri: URLs.TAG_URL.replace('{}', (identifier as string))
+	public static async fetchTag(name: string, page?: number): Promise<Tag> {
+		if (page === undefined) page = 1;
+
+		const options: request.Options = {
+			uri: URLs.TAG_URL.replace('{}', Helpers.slugify(name)),
+			qs: {
+				page: page
+			}
 		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
 		return this.jsonConvert.deserializeObject(json, Tag);
 	}
 
+	/**
+	 * Fetches a tag and its associated details by ID
+	 *
+	 * THIS IS A VERY VERY VERY DIRTY HACK, BUT DERPIBOORU'S API DESIGN REQUIRES ITS EXISTENCE!
+	 * I'M SORRY!
+	 *
+	 * @static
+	 * @param {number} id The ID of the tag to fetch
+	 * @param {number} [page] The page of images to fetch
+	 * @returns {Promise<Tag>} A Promise wrapping the fetched tag
+	 * @memberof Fetch
+	 */
+	public static async fetchTagByID(id: number, page?: number): Promise<Tag> {
+		if (page === undefined) page = 1;
+
+		let curId = '0' + id;
+
+		if (this.tagIDToURLMap.has(id)) {
+			curId = (this.tagIDToURLMap.get(id) as string);
+		}
+
+		const options: request.Options = {
+			uri: URLs.TAG_URL.replace('{}', curId),
+			qs: {
+				page: page
+			}
+		};
+		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
+		let json = await this.fetchJSON(requestOptions);
+
+		let loopCount = 0;
+
+		while (json.tag.id !== id) {
+			curId = '0' + curId;
+			requestOptions.uri = URLs.TAG_URL.replace('{}', curId);
+			json = await this.fetchJSON(requestOptions);
+
+			loopCount++;
+
+			if (loopCount >= MAXIUMUM_ID_FETCH_RETRIES) {
+				throw new Error('Maximum number of fetch attempts exceeded - blame Derpibooru for allowing name -> ID collisions.');
+			}
+		}
+
+		if (!this.tagIDToURLMap.has(id)) {
+			this.tagIDToURLMap.set(id, curId);
+		}
+
+		return this.jsonConvert.deserializeObject(json, Tag);
+	}
+
+	/**
+	 * Searches for a set of images matching the given query
+	 *
+	 * @static
+	 * @see SearchOptions
+	 * @param {SearchOptions} searchOptions The options to search with
+	 * @returns {Promise<SearchResults>} A Promise wrapping the search results
+	 * @memberof Fetch
+	 */
 	public static async search(searchOptions: SearchOptions): Promise<SearchResults> {
 		let { query, sortFormat, sortOrder, page } = searchOptions;
 
@@ -122,6 +239,29 @@ export class Fetch {
 		searchResults.sortFormat = sortFormat;
 		searchResults.sortOrder = sortOrder;
 		return searchResults;
+	}
+
+	/**
+	 * Fetches the comments on an image
+	 *
+	 * @static
+	 * @param {number} imageID The ID of the image to fetch comments from
+	 * @param {(number)} [page] The page of comments to fetch
+	 * @returns {Promise<ImageComments>}
+	 * @memberof Fetch
+	 */
+	public static async fetchComments(imageID: number, page?: number): Promise<ImageComments> {
+		if (page === undefined) page = 1;
+
+		const options: request.Options = {
+			uri: URLs.COMMENTS_URL.replace('{}', '' + imageID)
+		};
+
+		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		let comments = this.jsonConvert.deserializeObject(json, ImageComments);
+		comments.nextPage = page + 1;
+		comments.imageID = imageID;
+		return comments;
 	}
 
 	/**

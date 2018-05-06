@@ -41,7 +41,7 @@ export class Link {
 	 * @memberof Link
 	 */
 	public async user(): Promise<User> {
-		return Fetch.fetchUser(this._user);
+		return Fetch.fetchUserByID(this._user);
 	}
 
 	/**
@@ -51,6 +51,6 @@ export class Link {
 	 * @memberof Link
 	 */
 	public async tag(): Promise<Tag> {
-		return Fetch.fetchTag(this._tag);
+		return Fetch.fetchTagByID(this._tag);
 	}
 }
