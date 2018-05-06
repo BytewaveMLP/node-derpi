@@ -44,8 +44,16 @@ export class Comment {
 	@JsonProperty('posted_at', DateConverter)
 	public posted: Date = Consts.DEFAULT_DATE;
 
+	/**
+	 * The name of the user who posted this comment
+	 *
+	 * Use this instead of (await author()).name to save an HTTP request and make the Derpi admins happy
+	 *
+	 * @type {string}
+	 * @memberof Comment
+	 */
 	@JsonProperty('author', String)
-	private _author: string = '';
+	public authorName: string = '';
 
 	@JsonProperty('image_id', Number)
 	private _image: number = 0;
@@ -61,13 +69,13 @@ export class Comment {
 		// comments_home.json does NOT provide me with the user ID of the uploader, just the name
 		// Is this a **user** with the name Background Pony #whatever, or is it a real anonymous user??
 		// We're just going to assume the latter and hope nobody breaks anything.
-		if (this._author.match(/Background Pony \#[0-9A-Z]+/)) {
+		if (this.authorName.match(/Background Pony \#[0-9A-Z]+/)) {
 			let user = new User();
-			user.name = this._author;
+			user.name = this.authorName;
 			return user;
 		}
 
-		let user = await Fetch.fetchUser(this._author);
+		let user = await Fetch.fetchUser(this.authorName);
 
 		return user;
 	}

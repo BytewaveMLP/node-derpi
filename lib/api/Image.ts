@@ -210,14 +210,30 @@ export class Image {
 	@JsonProperty('first_seen_at', DateConverter)
 	public firstSeen: Date = Consts.DEFAULT_DATE;
 
+	/**
+	 * The name of the user that uploaded the image
+	 *
+	 * Use this instead of (await uploader()).name to save an HTTP request and make the Derpi admins happy
+	 *
+	 * @type {string}
+	 * @memberof Image
+	 */
 	@JsonProperty('uploader', String)
-	private _uploader: string = '';
+	public uploaderName: string = '';
 
+	/**
+	 * The ID of the user that uploaded the image
+	 *
+	 * Use this instead of (await uploader()).id to save an HTTP request and make the Derpi admins happy
+	 *
+	 * @type {number}
+	 * @memberof Image
+	 */
 	@JsonProperty('uploader_id', Number)
-	private _uploaderId: number = 0;
+	public uploaderID: number = 0;
 
 	@JsonProperty('tag_ids', [Number])
-	private _tags: number[] = new Array<number>();
+	private _tags: number[] = [];
 
 	/**
 	 * Gets the user that uploaded the image
@@ -230,11 +246,11 @@ export class Image {
 		// it is ALSO a valid login name (see: https://derpibooru.org/profiles/Background%20Pony).
 		// So, I have to store both the uploader **and** uploader ID here to make sure both are set to values indicating a guest.
 		// This API is going to drive me insane.
-		if (this._uploader === 'Background Pony' && this._uploaderId === null) {
+		if (this.uploaderName === 'Background Pony' && this.uploaderID === null) {
 			return new User();
 		}
 
-		return Fetch.fetchUserByID(this._uploaderId);
+		return Fetch.fetchUserByID(this.uploaderID);
 	}
 
 	/**
