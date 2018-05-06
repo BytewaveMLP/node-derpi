@@ -1,6 +1,6 @@
 {
   "name": "node-derpi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Derpibooru API wrapper for Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
     "url": "https://code.horse"
   },
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
     "build": "tsc",
     "test": "mocha -r ts-node/register test/*.ts",
     "lint": "eslint . && tslint --project ."
