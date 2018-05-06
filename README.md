@@ -39,7 +39,7 @@ That's it! Your package manager should handle any dependencies for you.
 
 ### Usage
 
-**TO BE WRITTEN**
+See the [documentation](https://bytewavemlp.github.io/node-derpi).
 
 ## Maintainers
 
