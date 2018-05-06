@@ -265,7 +265,10 @@ export class Fetch {
 		if (page === undefined) page = 1;
 
 		const options: request.Options = {
-			uri: URLs.COMMENTS_URL.replace('{}', '' + imageID)
+			uri: URLs.COMMENTS_URL.replace('{}', '' + imageID),
+			qs: {
+				page: page
+			}
 		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
