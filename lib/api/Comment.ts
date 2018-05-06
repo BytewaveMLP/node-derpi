@@ -6,6 +6,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { DateConverter } from '../util/DateConverter';
 import { Fetch } from '..';
 
+@JsonObject
 export class Comment {
 	/**
 	 * The ID of the comment
