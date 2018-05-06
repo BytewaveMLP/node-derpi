@@ -1,5 +1,7 @@
 # node-derpi
 
+[![GitHub version](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi.svg)](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi) [![npm version](https://badge.fury.io/js/node-derpi.svg)](https://badge.fury.io/js/node-derpi)
+
 > A Derpibooru API wrapper for Node.js
 
 node-derpi is my first attempt at an API wrapper in Node, specifically for the [Derpibooru](https://derpibooru.org) image board. It amis to be a rich API wrapper around Derpibooru's JSON API, supporting rich deserialization of supported types (dates, other Derpi data points, etc). It is also fully strongly-typed, being written in Typescript.
