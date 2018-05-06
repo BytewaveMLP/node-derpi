@@ -6,6 +6,12 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { DateConverter } from '../util/DateConverter';
 import { Fetch } from '..';
 
+/**
+ * Represents a single comment on an image
+ *
+ * @export
+ * @class Comment
+ */
 @JsonObject
 export class Comment {
 	/**

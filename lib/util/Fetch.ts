@@ -35,6 +35,12 @@ export interface SearchOptions {
 
 const MAXIUMUM_ID_FETCH_RETRIES = 10;
 
+/**
+ * Various functions for fetching information from Derpibooru
+ *
+ * @export
+ * @class Fetch
+ */
 export class Fetch {
 	private static jsonConvert: JsonConvert = new JsonConvert();
 	private static tagIDToURLMap: Map<number, string> = new Map<number, string>();

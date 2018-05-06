@@ -6,6 +6,12 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { DateConverter } from '../util/DateConverter';
 import { Fetch } from '..';
 
+/**
+ * Represents an artist link on a user profile
+ *
+ * @export
+ * @class Link
+ */
 @JsonObject
 export class Link {
 	/**

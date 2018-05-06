@@ -4,6 +4,12 @@ import { Image } from './Image';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '..';
 
+/**
+ * Represents a page of comments on an image
+ *
+ * @export
+ * @class ImageComments
+ */
 @JsonObject
 export class ImageComments {
 	/**

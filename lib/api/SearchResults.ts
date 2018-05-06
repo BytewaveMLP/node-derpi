@@ -3,6 +3,12 @@ import { Image } from './Image';
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { ResultSortFormat, ResultSortOrder, Fetch } from '../util/Fetch';
 
+/**
+ * Represents a page of search results
+ *
+ * @export
+ * @class SearchResults
+ */
 @JsonObject
 export class SearchResults {
 	/**

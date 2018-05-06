@@ -4,6 +4,12 @@ import { Fetch } from '../util/Fetch';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
+/**
+ * Represents a page of tag results, as well as a list of various details about a tag
+ *
+ * @export
+ * @class Tag
+ */
 @JsonObject
 export class Tag {
 	/**

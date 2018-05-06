@@ -2,6 +2,12 @@ import { URLConverter } from '../util/URLConverter';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
+/**
+ * Represents the various representations (heh) of an image
+ *
+ * @export
+ * @class ImageRepresentations
+ */
 @JsonObject
 export class ImageRepresentations {
 	@JsonProperty('thumb_tiny', URLConverter)

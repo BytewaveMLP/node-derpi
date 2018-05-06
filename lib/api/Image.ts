@@ -10,6 +10,12 @@ import { Fetch } from '../util/Fetch';
 import { TagCollection } from '../util/TagCollection';
 import { ImageComments } from './ImageComments';
 
+/**
+ * Represents a single image
+ *
+ * @export
+ * @class Image
+ */
 @JsonObject
 export class Image {
 	/**

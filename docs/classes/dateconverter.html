@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;util/Helpers&quot; | node-derpi</title>
+	<title>DateConverter | node-derpi</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,63 +56,106 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_util_helpers_.html">&quot;util/Helpers&quot;</a>
+					<a href="dateconverter.html">DateConverter</a>
 				</li>
 			</ul>
-			<h1>External module &quot;util/Helpers&quot;</h1>
+			<h1>Class DateConverter</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Converts ISO-8601 strings to Date objects</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>DateConverter</p>
+						</dd>
+						<dt>implements</dt>
+						<dd><p>{JsonCustomConvert<Date>}</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DateConverter</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">JsonCustomConvert</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_helpers_.html#slugify" class="tsd-kind-icon">slugify</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="slugify" class="tsd-anchor"></a>
-					<h3>slugify</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">slugify<span class="tsd-signature-symbol">(</span>param<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="deserialize" class="tsd-anchor"></a>
+					<h3>deserialize</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">deserialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/util/Helpers.ts#L7">util/Helpers.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/util/DateConverter.ts#L17">util/DateConverter.ts:17</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Slugifies a URL parameter in the same way Derpibooru does, for fetching tags</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>export</dt>
-									<dd></dd>
-								</dl>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>param: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The parameter to slugify</p>
-									</div>
+									<h5>date: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="serialize" class="tsd-anchor"></a>
+					<h3>serialize</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/util/DateConverter.ts#L13">util/DateConverter.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>date: <span class="tsd-signature-type">Date</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -124,69 +167,114 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_award_.html">"api/<wbr>Award"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_comment_.html">"api/<wbr>Comment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_image_.html">"api/<wbr>Image"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_imagecomments_.html">"api/<wbr>Image<wbr>Comments"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_imagerepresentations_.html">"api/<wbr>Image<wbr>Representations"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_link_.html">"api/<wbr>Link"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_searchresults_.html">"api/<wbr>Search<wbr>Results"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_tag_.html">"api/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_tagdetails_.html">"api/<wbr>Tag<wbr>Details"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_api_user_.html">"api/<wbr>User"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_collection_.html">"util/<wbr>Collection"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_consts_.html">"util/<wbr>Consts"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_dateconverter_.html">"util/<wbr>Date<wbr>Converter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_fetch_.html">"util/<wbr>Fetch"</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="_util_helpers_.html">"util/<wbr>Helpers"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_tagcollection_.html">"util/<wbr>Tag<wbr>Collection"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_urlconverter_.html">"util/URLConverter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_urls_.html">"util/URLs"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_util_helpers_.html#slugify" class="tsd-kind-icon">slugify</a>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/resultsortformat.html" class="tsd-kind-icon">Result<wbr>Sort<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/resultsortorder.html" class="tsd-kind-icon">Result<wbr>Sort<wbr>Order</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="award.html" class="tsd-kind-icon">Award</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="collection.html" class="tsd-kind-icon">Collection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="comment.html" class="tsd-kind-icon">Comment</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-is-private">
+						<a href="dateconverter.html" class="tsd-kind-icon">Date<wbr>Converter</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="fetch.html" class="tsd-kind-icon">Fetch</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="image.html" class="tsd-kind-icon">Image</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="imagecomments.html" class="tsd-kind-icon">Image<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="imagerepresentations.html" class="tsd-kind-icon">Image<wbr>Representations</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="link.html" class="tsd-kind-icon">Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="searchresults.html" class="tsd-kind-icon">Search<wbr>Results</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tag.html" class="tsd-kind-icon">Tag</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tagcollection.html" class="tsd-kind-icon">Tag<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tagdetails.html" class="tsd-kind-icon">Tag<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-private">
+						<a href="urlconverter.html" class="tsd-kind-icon">URLConverter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="user.html" class="tsd-kind-icon">User</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/searchoptions.html" class="tsd-kind-icon">Search<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#comments_url" class="tsd-kind-icon">COMMENTS_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#default_date" class="tsd-kind-icon">DEFAULT_<wbr>DATE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#http_200_ok" class="tsd-kind-icon">HTTP_<wbr>200_<wbr>OK</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#http_301_moved_permanently" class="tsd-kind-icon">HTTP_<wbr>301_<wbr>MOVED_<wbr>PERMANENTLY</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#image_url" class="tsd-kind-icon">IMAGE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#maxiumum_id_fetch_retries" class="tsd-kind-icon">MAXIUMUM_<wbr>ID_<wbr>FETCH_<wbr>RETRIES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#search_url" class="tsd-kind-icon">SEARCH_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#tag_url" class="tsd-kind-icon">TAG_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#url_base" class="tsd-kind-icon">URL_<wbr>BASE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#user_agent" class="tsd-kind-icon">USER_<wbr>AGENT</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#user_url" class="tsd-kind-icon">USER_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-private">
+						<a href="../globals.html#slugify" class="tsd-kind-icon">slugify</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../globals.html#default_request_opts" class="tsd-kind-icon">DEFAULT_<wbr>REQUEST_<wbr>OPTS</a>
 					</li>
 				</ul>
 			</nav>

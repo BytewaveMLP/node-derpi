@@ -4,6 +4,12 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { URLConverter } from '../util/URLConverter';
 import { DateConverter } from '../util/DateConverter';
 
+/**
+ * Represents the various awards (badges) on user profiles
+ *
+ * @export
+ * @class Award
+ */
 @JsonObject
 export class Award {
 	/**

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ImageComments | node-derpi</title>
+	<title>Tag | node-derpi</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,24 +56,35 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_api_imagecomments_.html">&quot;api/ImageComments&quot;</a>
-				</li>
-				<li>
-					<a href="_api_imagecomments_.imagecomments.html">ImageComments</a>
+					<a href="tag.html">Tag</a>
 				</li>
 			</ul>
-			<h1>Class ImageComments</h1>
+			<h1>Class Tag</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a page of tag results, as well as a list of various details about a tag</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>export</dt>
+						<dd></dd>
+						<dt>class</dt>
+						<dd><p>Tag</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ImageComments</span>
+						<span class="target">Tag</span>
 					</li>
 				</ul>
 			</section>
@@ -84,16 +95,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_imagecomments_.imagecomments.html#comments" class="tsd-kind-icon">comments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_imagecomments_.imagecomments.html#imageid" class="tsd-kind-icon">imageID</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_imagecomments_.imagecomments.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_imagecomments_.imagecomments.html#total" class="tsd-kind-icon">total</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#details" class="tsd-kind-icon">details</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#images" class="tsd-kind-icon">images</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_imagecomments_.imagecomments.html#fetchnextpage" class="tsd-kind-icon">fetch<wbr>Next<wbr>Page</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tag.html#fetchnextpage" class="tsd-kind-icon">fetch<wbr>Next<wbr>Page</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,37 +112,50 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="comments" class="tsd-anchor"></a>
-					<h3>comments</h3>
-					<div class="tsd-signature tsd-kind-icon">comments<span class="tsd-signature-symbol">:</span> <a href="_api_comment_.comment.html" class="tsd-signature-type">Comment</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="details" class="tsd-anchor"></a>
+					<h3>details</h3>
+					<div class="tsd-signature tsd-kind-icon">details<span class="tsd-signature-symbol">:</span> <a href="tagdetails.html" class="tsd-signature-type">TagDetails</a><span class="tsd-signature-symbol"> =&nbsp;new TagDetails()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/api/ImageComments.ts#L16">api/ImageComments.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/api/Tag.ts#L22">api/Tag.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The comments on this page</p>
+							<p>The details about this tag</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>type</dt>
-							<dd><p>{Comment[]}</p>
+							<dd><p>{TagDetails}</p>
 							</dd>
 							<dt>memberof</dt>
-							<dd><p>ImageComments</p>
+							<dd><p>Tag</p>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="imageid" class="tsd-anchor"></a>
-					<h3>imageID</h3>
-					<div class="tsd-signature tsd-kind-icon">imageID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<a name="images" class="tsd-anchor"></a>
+					<h3>images</h3>
+					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <a href="image.html" class="tsd-signature-type">Image</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/api/ImageComments.ts#L29">api/ImageComments.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/api/Tag.ts#L31">api/Tag.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The images on this page of results for this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{Image[]}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="nextpage" class="tsd-anchor"></a>
@@ -140,29 +163,19 @@
 					<div class="tsd-signature tsd-kind-icon">next<wbr>Page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/api/ImageComments.ts#L27">api/ImageComments.ts:27</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="total" class="tsd-anchor"></a>
-					<h3>total</h3>
-					<div class="tsd-signature tsd-kind-icon">total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/api/ImageComments.ts#L25">api/ImageComments.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/api/Tag.ts#L39">api/Tag.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The total number of comments on the image</p>
+							<p>The next page of results for this tag</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>type</dt>
 							<dd><p>{number}</p>
 							</dd>
 							<dt>memberof</dt>
-							<dd><p>ImageComments</p>
+							<dd><p>Tag</p>
 							</dd>
 						</dl>
 					</div>
@@ -174,27 +187,26 @@
 					<a name="fetchnextpage" class="tsd-anchor"></a>
 					<h3>fetch<wbr>Next<wbr>Page</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Next<wbr>Page<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_api_imagecomments_.imagecomments.html" class="tsd-signature-type">ImageComments</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">fetch<wbr>Next<wbr>Page<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tag.html" class="tsd-signature-type">Tag</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ef183f0/lib/api/ImageComments.ts#L37">api/ImageComments.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/1137845/lib/api/Tag.ts#L47">api/Tag.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves the next page of comments</p>
+									<p>Fetches the next page of images on this tag</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>memberof</dt>
-									<dd><p>ImageComments</p>
+									<dd><p>Tag</p>
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_api_imagecomments_.imagecomments.html" class="tsd-signature-type">ImageComments</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The next page of comments (note that comments might be empty if you go over too many pages)</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="tag.html" class="tsd-signature-type">Tag</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -206,91 +218,121 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_award_.html">"api/<wbr>Award"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_comment_.html">"api/<wbr>Comment"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_image_.html">"api/<wbr>Image"</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_api_imagecomments_.html">"api/<wbr>Image<wbr>Comments"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_imagerepresentations_.html">"api/<wbr>Image<wbr>Representations"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_link_.html">"api/<wbr>Link"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_searchresults_.html">"api/<wbr>Search<wbr>Results"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_tag_.html">"api/<wbr>Tag"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_tagdetails_.html">"api/<wbr>Tag<wbr>Details"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_api_user_.html">"api/<wbr>User"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_collection_.html">"util/<wbr>Collection"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_consts_.html">"util/<wbr>Consts"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_dateconverter_.html">"util/<wbr>Date<wbr>Converter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_fetch_.html">"util/<wbr>Fetch"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_helpers_.html">"util/<wbr>Helpers"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_tagcollection_.html">"util/<wbr>Tag<wbr>Collection"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_urlconverter_.html">"util/URLConverter"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_util_urls_.html">"util/URLs"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/resultsortformat.html" class="tsd-kind-icon">Result<wbr>Sort<wbr>Format</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/resultsortorder.html" class="tsd-kind-icon">Result<wbr>Sort<wbr>Order</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="award.html" class="tsd-kind-icon">Award</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="collection.html" class="tsd-kind-icon">Collection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="comment.html" class="tsd-kind-icon">Comment</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-private">
+						<a href="dateconverter.html" class="tsd-kind-icon">Date<wbr>Converter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="fetch.html" class="tsd-kind-icon">Fetch</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="image.html" class="tsd-kind-icon">Image</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="imagecomments.html" class="tsd-kind-icon">Image<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="imagerepresentations.html" class="tsd-kind-icon">Image<wbr>Representations</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="link.html" class="tsd-kind-icon">Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="searchresults.html" class="tsd-kind-icon">Search<wbr>Results</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_api_imagecomments_.imagecomments.html" class="tsd-kind-icon">Image<wbr>Comments</a>
+					<li class="current tsd-kind-class">
+						<a href="tag.html" class="tsd-kind-icon">Tag</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_imagecomments_.imagecomments.html#comments" class="tsd-kind-icon">comments</a>
+								<a href="tag.html#details" class="tsd-kind-icon">details</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_imagecomments_.imagecomments.html#imageid" class="tsd-kind-icon">imageID</a>
+								<a href="tag.html#images" class="tsd-kind-icon">images</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_imagecomments_.imagecomments.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_imagecomments_.imagecomments.html#total" class="tsd-kind-icon">total</a>
+								<a href="tag.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_imagecomments_.imagecomments.html#fetchnextpage" class="tsd-kind-icon">fetch<wbr>Next<wbr>Page</a>
+								<a href="tag.html#fetchnextpage" class="tsd-kind-icon">fetch<wbr>Next<wbr>Page</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="tagcollection.html" class="tsd-kind-icon">Tag<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tagdetails.html" class="tsd-kind-icon">Tag<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-private">
+						<a href="urlconverter.html" class="tsd-kind-icon">URLConverter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="user.html" class="tsd-kind-icon">User</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/searchoptions.html" class="tsd-kind-icon">Search<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#comments_url" class="tsd-kind-icon">COMMENTS_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#default_date" class="tsd-kind-icon">DEFAULT_<wbr>DATE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#http_200_ok" class="tsd-kind-icon">HTTP_<wbr>200_<wbr>OK</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#http_301_moved_permanently" class="tsd-kind-icon">HTTP_<wbr>301_<wbr>MOVED_<wbr>PERMANENTLY</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#image_url" class="tsd-kind-icon">IMAGE_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#maxiumum_id_fetch_retries" class="tsd-kind-icon">MAXIUMUM_<wbr>ID_<wbr>FETCH_<wbr>RETRIES</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#search_url" class="tsd-kind-icon">SEARCH_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#tag_url" class="tsd-kind-icon">TAG_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#url_base" class="tsd-kind-icon">URL_<wbr>BASE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#user_agent" class="tsd-kind-icon">USER_<wbr>AGENT</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#user_url" class="tsd-kind-icon">USER_<wbr>URL</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-private">
+						<a href="../globals.html#slugify" class="tsd-kind-icon">slugify</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../globals.html#default_request_opts" class="tsd-kind-icon">DEFAULT_<wbr>REQUEST_<wbr>OPTS</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

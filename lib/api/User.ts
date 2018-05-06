@@ -6,6 +6,12 @@ import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
+/**
+ * Represents a user on Derpibooru, registered or unregistered
+ *
+ * @export
+ * @class User
+ */
 @JsonObject
 export class User {
 	/**
