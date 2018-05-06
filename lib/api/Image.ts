@@ -9,6 +9,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '../util/Fetch';
 import { TagCollection } from '../util/TagCollection';
 
+@JsonObject
 export class Image {
 	/**
 	 * The internal ID of the image

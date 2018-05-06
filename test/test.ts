@@ -13,7 +13,7 @@ import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import { Award } from '../lib/api/Award';
 import { User } from '../lib/api/User';
 import { Link } from '../lib/api/Link';
-import { Fetch } from '../lib/util/Fetch';
+import { Fetch, ResultSortFormat, ResultSortOrder } from '../lib/util/Fetch';
 
 use(chaiAsPromised);
 
@@ -110,6 +110,30 @@ describe('HTTP fetching', () => {
 				.and.to.eventually.have.property('details')
 				.that.has.property('name')
 				.that.equals('rainbow dash');
+		});
+	});
+
+	describe('search', () => {
+		it('should produce valid search results', () => {
+			return expect(Fetch.search({
+				sortFormat: ResultSortFormat.CREATION_DATE,
+				sortOrder: ResultSortOrder.ASCENDING
+			}))
+				.to.be.fulfilled
+				.and.to.eventually.have.property('images')
+				.that.has.lengthOf.above(0);
+		});
+
+		it('should handle next page fetching correctly', async () => {
+			let results = await Fetch.search({
+				sortFormat: ResultSortFormat.CREATION_DATE,
+				sortOrder: ResultSortOrder.ASCENDING
+			});
+
+			return expect(results.fetchNextPage())
+				.to.be.fulfilled
+				.and.to.eventually.have.property('images')
+				.that.has.lengthOf.above(0);
 		});
 	});
 });

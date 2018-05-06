@@ -2,6 +2,8 @@ import { Tag } from './Tag';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { URLConverter } from '../util/URLConverter';
+import { Fetch } from '..';
+import { TagCollection } from '../util/TagCollection';
 
 @JsonObject
 export class TagDetails {
@@ -35,17 +37,15 @@ export class TagDetails {
 	@JsonProperty('implied_tag_ids', [Number])
 	private _impliedTags: number[] = new Array<number>();
 
-	get impliedTags(): Tag[] {
-		// TODO: fetch
-		return new Array<Tag>();
-	}
-
 	@JsonProperty('aliased_to_id', Number)
 	private _aliasedTo: number = -1;
 
-	get aliasedTo(): Tag | null {
+	public async impliedTags(): Promise<TagCollection> {
+		return new TagCollection(this._impliedTags);
+	}
+
+	public async aliasedTo(): Promise<Tag | null> {
 		if (this._aliasedTo === -1) return null;
-		// TODO: deserialize tag
-		return new Tag();
+		return Fetch.fetchTag(this._aliasedTo);
 	}
 }

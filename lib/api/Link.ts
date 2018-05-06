@@ -4,6 +4,7 @@ import * as Consts from '../util/Consts';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { DateConverter } from '../util/DateConverter';
+import { Fetch } from '..';
 
 @JsonObject
 export class Link {
@@ -40,7 +41,7 @@ export class Link {
 	 * @memberof Link
 	 */
 	public async user(): Promise<User> {
-		return new User();
+		return Fetch.fetchUser(this._user);
 	}
 
 	/**
@@ -50,6 +51,6 @@ export class Link {
 	 * @memberof Link
 	 */
 	public async tag(): Promise<Tag> {
-		return new Tag();
+		return Fetch.fetchTag(this._tag);
 	}
 }

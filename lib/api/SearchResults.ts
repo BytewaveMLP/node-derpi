@@ -1,6 +1,7 @@
 import { Image } from './Image';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { ResultSortFormat, ResultSortOrder, Fetch } from '../util/Fetch';
 
 @JsonObject
 export class SearchResults {
@@ -12,6 +13,10 @@ export class SearchResults {
 
 	public query: string = '';
 
+	public sortFormat: ResultSortFormat = ResultSortFormat.CREATION_DATE;
+
+	public sortOrder: ResultSortOrder = ResultSortOrder.DESCENDING;
+
 	public nextPage: number = 0;
 
 	/**
@@ -20,7 +25,12 @@ export class SearchResults {
 	 * @returns {SearchResults}
 	 * @memberof SearchResults
 	 */
-	public fetchNextPage(): SearchResults { // TODO: fetch
-		return new SearchResults();
+	public async fetchNextPage(): Promise<SearchResults> {
+		return Fetch.search({
+			query: this.query,
+			sortFormat: this.sortFormat,
+			sortOrder: this.sortOrder,
+			page: this.nextPage
+		});
 	}
 }
