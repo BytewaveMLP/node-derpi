@@ -12,9 +12,10 @@
   },
   "scripts": {
     "prepublishOnly": "yarn run build",
-    "build": "tsc",
+    "build": "tsc && yarn run docs",
     "test": "mocha -r ts-node/register test/*.ts",
-    "lint": "eslint . && tslint --project ."
+    "lint": "tslint --project .",
+    "docs": "typedoc --out ./docs --mode file"
   },
   "keywords": [
     "derpibooru",
@@ -35,6 +36,7 @@
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "tslint-eslint-rules": "^5.1.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.8.1"
   },
   "dependencies": {

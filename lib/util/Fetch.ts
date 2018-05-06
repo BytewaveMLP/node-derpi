@@ -33,6 +33,11 @@ export interface SearchOptions {
 	page?: number;
 }
 
+/**
+ * Represents the maximum number of retries for ID fetching
+ *
+ * @private
+ */
 const MAXIUMUM_ID_FETCH_RETRIES = 10;
 
 /**

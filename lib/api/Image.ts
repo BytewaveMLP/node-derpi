@@ -1,6 +1,4 @@
 import { User } from './User';
-import { Comment } from './Comment';
-import { Tag } from './Tag';
 import { ImageRepresentations } from './ImageRepresentations';
 import * as Consts from '../util/Consts';
 import { DateConverter } from '../util/DateConverter';

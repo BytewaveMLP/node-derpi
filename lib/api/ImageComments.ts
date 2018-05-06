@@ -1,5 +1,4 @@
 import { Comment } from './Comment';
-import { Image } from './Image';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '..';
