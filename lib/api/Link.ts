@@ -17,28 +17,44 @@ export class Link {
 	/**
 	 * The current state of the link
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Link
 	 */
 	@JsonProperty('state', String)
-	public state: string = ''; // TODO: verified is known, what about other states?
+	public readonly state: string = ''; // TODO: verified is known, what about other states?
 
 	/**
 	 * When the link was first established
 	 *
+	 * @readonly
 	 * @type {Date}
 	 * @memberof Link
 	 */
 	@JsonProperty('created_at', DateConverter)
-	public created: Date = Consts.DEFAULT_DATE;
+	public readonly created: Date = Consts.DEFAULT_DATE;
 
+	/**
+	 * The internal ID of the user associated with this link
+	 *
+	 * @readonly
+	 * @private
+	 * @type {number}
+	 * @memberof Link
+	 */
 	@JsonProperty('user_id', Number)
-	private _user: number = 0;
+	private readonly _user: number = 0;
 
-	// This technically shouldn't be used here and tag names would be preferred instead, however we aren't provided a tag name here.
-	// @byte[] please fix the Derpi API
+	/**
+	 * The internal ID of the tag associated with this link
+	 *
+	 * @readonly
+	 * @private
+	 * @type {number}
+	 * @memberof Link
+	 */
 	@JsonProperty('tag_id', Number)
-	private _tag: number = 0;
+	private readonly _tag: number = 0;
 
 	/**
 	 * Gets the user associated with this link

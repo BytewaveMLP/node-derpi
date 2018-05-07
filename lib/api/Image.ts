@@ -19,225 +19,257 @@ export class Image {
 	/**
 	 * The internal ID of the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('id', Number)
-	public id: number = 0;
+	public readonly id: number = 0;
 
 	/**
 	 * The total score on the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('score', Number)
-	public score: number = 0;
+	public readonly score: number = 0;
 
 	/**
 	 * The number of upvotes on the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('upvotes', Number)
-	public upvotes: number = 0;
+	public readonly upvotes: number = 0;
 
 	/**
 	 * The number of downvotes on the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('downvotes', Number)
-	public downvotes: number = 0;
+	public readonly downvotes: number = 0;
 
 	/**
 	 * The number of favorites on the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('faves', Number)
-	public favorites: number = 0;
+	public readonly favorites: number = 0;
 
 	/**
 	 * The tags on the image, represented as a comma-separated string for convenience
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('tags', String)
-	public tagString: string = '';
+	public readonly tagString: string = '';
 
 	/**
 	 * The width of the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('width', Number)
-	public width: number = 0;
+	public readonly width: number = 0;
 
 	/**
 	 * The height of the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('height', Number)
-	public height: number = 0;
+	public readonly height: number = 0;
 
 	/**
 	 * The filename of the original uploaded image
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('file_name', String)
-	public fileName: string = '';
+	public readonly fileName: string = '';
 
 	/**
 	 * The description of the image on Derpibooru, if any
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('description', String)
-	public description: string = '';
+	public readonly description: string = '';
 
 	/**
 	 * The aspect ratio of the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('aspect_ratio', Number)
-	public aspectRatio: number = 0;
+	public readonly aspectRatio: number = 0;
 
 	/**
 	 * The format the image was originally in before being uploaded to Deribooru
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('original_format', String)
-	public originalFormat: string = '';
+	public readonly originalFormat: string = '';
 
 	/**
 	 * The MIME type of the image
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('mime_type', String)
-	public mimeType: string = '';
+	public readonly mimeType: string = '';
 
 	/**
 	 * The current SHA-512 hash of the image
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('sha512_hash', String)
-	public sha512: string = '';
+	public readonly sha512: string = '';
 
 	/**
 	 * The SHA-512 hash of the original image without optimizations
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('orig_sha512_hash', String)
-	public sha512Original: string = '';
+	public readonly sha512Original: string = '';
 
 	/**
 	 * The source of the image, if specified by the uploader
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('source_url', String)
-	public source: string = '';
+	public readonly source: string = '';
 
 	/**
 	 * The different possible representations of the image
 	 *
+	 * @readonly
 	 * @type {ImageRepresentations}
 	 * @memberof Image
 	 */
 	@JsonProperty('representations', ImageRepresentations)
-	public representations: ImageRepresentations = new ImageRepresentations();
+	public readonly representations: ImageRepresentations = new ImageRepresentations();
 
 	/**
 	 * Whether the image has been rendered by Derpibooru
 	 *
+	 * @readonly
 	 * @type {boolean}
 	 * @memberof Image
 	 */
 	@JsonProperty('is_rendered', Boolean)
-	public isRendered: boolean = false;
+	public readonly isRendered: boolean = false;
 
 	/**
 	 * Whether the image has finished being optimized by Derpibooru
 	 *
+	 * @readonly
 	 * @type {boolean}
 	 * @memberof Image
 	 */
 	@JsonProperty('is_optimized', Boolean)
-	public isOptimized: boolean = false;
+	public readonly isOptimized: boolean = false;
 
 	/**
 	 * When the image was uploaded to the site
 	 *
+	 * @readonly
 	 * @type {Date}
 	 * @memberof Image
 	 */
 	@JsonProperty('created_at', DateConverter)
-	public created: Date = Consts.DEFAULT_DATE;
+	public readonly created: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * When the image details were last edited
 	 *
+	 * @readonly
 	 * @type {Date}
 	 * @memberof Image
 	 */
 	@JsonProperty('updated_at', DateConverter)
-	public updated: Date = Consts.DEFAULT_DATE;
+	public readonly updated: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * When the image was first seen
 	 *
+	 * @readonly
 	 * @type {Date}
 	 * @memberof Image
 	 */
 	@JsonProperty('first_seen_at', DateConverter)
-	public firstSeen: Date = Consts.DEFAULT_DATE;
+	public readonly firstSeen: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * The name of the user that uploaded the image
 	 *
 	 * Use this instead of (await uploader()).name to save an HTTP request and make the Derpi admins happy
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Image
 	 */
 	@JsonProperty('uploader', String)
-	public uploaderName: string = '';
+	public readonly uploaderName: string = '';
 
 	/**
 	 * The ID of the user that uploaded the image
 	 *
 	 * Use this instead of (await uploader()).id to save an HTTP request and make the Derpi admins happy
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Image
 	 */
 	@JsonProperty('uploader_id', Number)
-	public uploaderID: number = 0;
+	public readonly uploaderID: number = 0;
 
+	/**
+	 * The tag IDs on the image as returned from the API
+	 *
+	 * @private
+	 * @readonly
+	 * @type {number[]}
+	 * @memberof Image
+	 */
 	@JsonProperty('tag_ids', [Number])
-	private _tags: number[] = [];
+	private readonly _tags: number[] = [];
 
 	/**
 	 * Gets the user that uploaded the image

@@ -17,52 +17,65 @@ export class Comment {
 	/**
 	 * The ID of the comment
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof Comment
 	 */
 	@JsonProperty('id', Number)
-	public id: number = 0;
+	public readonly id: number = 0;
 
 	/**
 	 * The body of the comment
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Comment
 	 */
 	@JsonProperty('body', String)
-	public body: string = '';
+	public readonly body: string = '';
 
 	/**
 	 * Has the comment been deleted?
 	 *
+	 * @readonly
 	 * @type {boolean}
 	 * @memberof Comment
 	 */
 	@JsonProperty('deleted', Boolean)
-	public deleted: boolean = false;
+	public readonly deleted: boolean = false;
 
 	/**
 	 * The date the comment was posted on
 	 *
+	 * @readonly
 	 * @type {Date}
 	 * @memberof Comment
 	 */
 	@JsonProperty('posted_at', DateConverter)
-	public posted: Date = Consts.DEFAULT_DATE;
+	public readonly posted: Date = Consts.DEFAULT_DATE;
 
 	/**
 	 * The name of the user who posted this comment
 	 *
 	 * Use this instead of (await author()).name to save an HTTP request and make the Derpi admins happy
 	 *
+	 * @readonly
 	 * @type {string}
 	 * @memberof Comment
 	 */
 	@JsonProperty('author', String)
-	public authorName: string = '';
+	public readonly authorName: string = '';
 
+	/**
+	 * The internal ID of the image this comment was posted on
+	 *
+	 * @readonly
+	 * @private
+	 * @type {number}
+	 * @memberof Comment
+	 */
 	@JsonProperty('image_id', Number)
-	private _image: number = 0;
+	private readonly _image: number = 0;
 
 	/**
 	 * Gets the author of this comment
@@ -77,7 +90,7 @@ export class Comment {
 		// We're just going to assume the latter and hope nobody breaks anything.
 		if (this.authorName.match(/Background Pony \#[0-9A-Z]+/)) {
 			let user = new User();
-			user.name = this.authorName;
+			user.name = this.authorName; // TODO: figure out how to do this better so user.name can be readonly
 			return user;
 		}
 

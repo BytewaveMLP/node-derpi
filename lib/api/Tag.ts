@@ -15,20 +15,22 @@ export class Tag {
 	/**
 	 * The details about this tag
 	 *
+	 * @readonly
 	 * @type {TagDetails}
 	 * @memberof Tag
 	 */
 	@JsonProperty('tag', TagDetails)
-	public details: TagDetails = new TagDetails();
+	public readonly details: TagDetails = new TagDetails();
 
 	/**
 	 * The images on this page of results for this tag
 	 *
+	 * @readonly
 	 * @type {Image[]}
 	 * @memberof Tag
 	 */
 	@JsonProperty('images', [Image])
-	public images: Image[] = [];
+	public readonly images: Image[] = [];
 
 	/**
 	 * The next page of results for this tag

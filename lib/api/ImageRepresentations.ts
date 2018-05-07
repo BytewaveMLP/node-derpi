@@ -10,27 +10,85 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class ImageRepresentations {
+	/**
+	 * The smallest rendered size of the image
+	 *
+	 * Dimensions: 50x50
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('thumb_tiny', URLConverter)
-	public thumbnailTiny: string = '';
+	public readonly thumbnailTiny: string = '';
 
+	/**
+	 * A 150x150 thumbnail for the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('thumb_small', URLConverter)
-	public thumbnailSmall: string = '';
+	public readonly thumbnailSmall: string = '';
 
+	/**
+	 * A 250x250 thumbnail for the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('thumb', URLConverter)
-	public thumbnail: string = '';
+	public readonly thumbnail: string = '';
 
+	/**
+	 * An approximately 300x300 rendering of the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('small', URLConverter)
-	public small: string = '';
+	public readonly small: string = '';
 
+	/**
+	 * An approximately 750x750 rendering of the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('medium', URLConverter)
-	public medium: string = '';
+	public readonly medium: string = '';
 
+	/**
+	 * An approximately 1500x1500 rendering of the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('large', URLConverter)
-	public large: string = '';
+	public readonly large: string = '';
 
+	/**
+	 * An approximately 1024x1024 (?) rendering of the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('tall', URLConverter)
-	public tall: string = '';
+	public readonly tall: string = '';
 
+	/**
+	 * A source-quality rendering of the image
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
 	@JsonProperty('full', URLConverter)
-	public full: string = '';
+	public readonly full: string = '';
 }

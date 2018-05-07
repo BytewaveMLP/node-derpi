@@ -15,20 +15,22 @@ export class SearchResults {
 	/**
 	 * The images on this page of results
 	 *
+	 * @readonly
 	 * @type {Image[]}
 	 * @memberof SearchResults
 	 */
 	@JsonProperty('search', [Image])
-	public images: Image[] = [];
+	public readonly images: Image[] = [];
 
 	/**
 	 * The total number of images returned by this search
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof SearchResults
 	 */
 	@JsonProperty('total', Number)
-	public total: number = 0;
+	public readonly total: number = 0;
 
 	/**
 	 * The query used to perform this search
@@ -57,6 +59,7 @@ export class SearchResults {
 	/**
 	 * The next page of results
 	 *
+	 * @readonly
 	 * @see fetchNextPage
 	 * @type {number}
 	 * @memberof SearchResults
@@ -66,6 +69,7 @@ export class SearchResults {
 	/**
 	 * The filter ID used for this search
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof SearchResults
 	 */

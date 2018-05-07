@@ -14,23 +14,37 @@ export class ImageComments {
 	/**
 	 * The comments on this page
 	 *
+	 * @readonly
 	 * @type {Comment[]}
 	 * @memberof ImageComments
 	 */
 	@JsonProperty('comments', [Comment])
-	public comments: Comment[] = [];
+	public readonly comments: Comment[] = [];
 
 	/**
 	 * The total number of comments on the image
 	 *
+	 * @readonly
 	 * @type {number}
 	 * @memberof ImageComments
 	 */
 	@JsonProperty('total', Number)
-	public total: number = 0;
+	public readonly total: number = 0;
 
+	/**
+	 * The index of the next page of comments
+	 *
+	 * @type {number}
+	 * @memberof ImageComments
+	 */
 	public nextPage: number = 0;
 
+	/**
+	 * The internal ID of the image these comments were posted on
+	 *
+	 * @type {number}
+	 * @memberof ImageComments
+	 */
 	public imageID: number = 0;
 
 	/**
