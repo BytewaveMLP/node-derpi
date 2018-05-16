@@ -2,3 +2,4 @@ lib/
 tsconfig.json
 tslint.json
 docs/
+test/
