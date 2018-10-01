@@ -4,7 +4,7 @@
 
 > A Derpibooru API wrapper for Node.js
 
-node-derpi is my first attempt at an API wrapper in Node, specifically for the [Derpibooru](https://derpibooru.org) image board. It amis to be a rich API wrapper around Derpibooru's JSON API, supporting rich deserialization of supported types (dates, other Derpi data points, etc). It is also fully strongly-typed, being written in Typescript.
+node-derpi is my first attempt at an API wrapper in Node, specifically for the [Derpibooru](https://derpibooru.org) image board. It aims to be a rich API wrapper around Derpibooru's JSON API, supporting rich deserialization of supported types (dates, other Derpi data points, etc.). It is also fully strongly-typed, being written in Typescript.
 
 ## Table of Contents
 
