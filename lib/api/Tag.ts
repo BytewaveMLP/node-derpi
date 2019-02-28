@@ -1,6 +1,7 @@
 import { TagDetails } from './TagDetails';
 import { Image } from './Image';
 import { Fetch } from '../util/Fetch';
+import { DefaultFilters } from '../util/DefaultFilters';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
@@ -41,12 +42,21 @@ export class Tag {
 	public nextPage: number = 0;
 
 	/**
+	 * The filter ID used for this search
+	 *
+	 * @readonly
+	 * @type {number}
+	 * @memberof Tag
+	 */
+	public filterID: DefaultFilters | number = DefaultFilters.DEFAULT;
+
+	/**
 	 * Fetches the next page of images on this tag
 	 *
 	 * @returns {Promise<Tag>}
 	 * @memberof Tag
 	 */
 	public async fetchNextPage(): Promise<Tag> {
-		return Fetch.fetchTagByID(this.details.id, this.nextPage);
+		return Fetch.fetchTagByID(this.details.id, this.nextPage, this.filterID);
 	}
 }

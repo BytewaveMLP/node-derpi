@@ -278,7 +278,7 @@ export class Fetch {
 			this.tagIDToURLMap.set(id, curId);
 		}
 
-		let tag = this.jsonConvert.deserializeObject(json, Tag);
+		let tag = this.jsonConvert.deserializeObject(json, Tag) as Tag;
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
 		return tag;
