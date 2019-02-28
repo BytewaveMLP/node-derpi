@@ -7,9 +7,11 @@ import * as Helpers from '../util/Helpers';
 import { SearchResults } from '../api/SearchResults';
 import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
+import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
 import * as request from 'request';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+import { ReadStream } from 'fs';
 
 /**
  * Represents various sort formats for results
@@ -87,6 +89,34 @@ export interface SearchOptions {
 	 * @memberof SearchOptions
 	 */
 	filterID?: DefaultFilters | number;
+}
+
+export interface ReverseImageSearchOptions {
+	/**
+	 * Your Derpi API key
+	 * 
+	 * https://derpibooru.org/users/edit
+	 * 
+	 * @type {string}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	key: string;
+
+	/**
+	 * The ReadStream or Buffer representing your image
+	 * 
+	 * @type {ReadStream|Buffer}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	image?: ReadStream | Buffer;
+
+	/**
+	 * The URL to your image, if you don't have it as a file
+	 * 
+	 * @type {string}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	url?: string;
 }
 
 /**
@@ -321,6 +351,25 @@ export class Fetch {
 		searchResults.sortOrder = sortOrder;
 		searchResults.filterID = filterID;
 		return searchResults;
+	}
+
+	public static async reverseImageSearch(reverseImageSearchOptions: ReverseImageSearchOptions): Promise<ReverseImageSearchResults> {
+		let { key, image, url } = reverseImageSearchOptions;
+
+		const options: request.Options = {
+			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
+			method: 'POST',
+			formData: {
+				key: key,
+				image: image,
+				scraper_url: url
+			}
+		}
+
+		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
+
+		return reverseImageSearch;
 	}
 
 	/**
