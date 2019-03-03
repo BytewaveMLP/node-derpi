@@ -10,8 +10,8 @@ import { DefaultFilters } from './DefaultFilters';
 import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
 import * as request from 'request';
+import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
-import { ReadStream } from 'fs';
 
 /**
  * Represents various sort formats for results
@@ -93,7 +93,7 @@ export interface SearchOptions {
 
 export interface ReverseImageSearchOptions {
 	/**
-	 * Your Derpi API key
+	 * Your Derpi API key (required as reverse image search is authenticated)
 	 * 
 	 * https://derpibooru.org/users/edit
 	 * 
@@ -103,12 +103,14 @@ export interface ReverseImageSearchOptions {
 	key: string;
 
 	/**
-	 * The ReadStream or Buffer representing your image
+	 * The data representing your image
 	 * 
-	 * @type {ReadStream|Buffer}
+	 * Accepts any type supported by https://github.com/form-data/form-data
+	 * 
+	 * @type {Buffer|Stream}
 	 * @memberof ReverseImageSearchOptions
 	 */
-	image?: ReadStream | Buffer;
+	image?: Buffer | Stream;
 
 	/**
 	 * The URL to your image, if you don't have it as a file
