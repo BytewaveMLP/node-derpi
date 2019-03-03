@@ -7,8 +7,10 @@ import * as Helpers from '../util/Helpers';
 import { SearchResults } from '../api/SearchResults';
 import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
+import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
 import * as request from 'request';
+import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 
 /**
@@ -87,6 +89,44 @@ export interface SearchOptions {
 	 * @memberof SearchOptions
 	 */
 	filterID?: DefaultFilters | number;
+}
+
+export interface ReverseImageSearchOptions {
+	/**
+	 * Your Derpi API key (required as reverse image search is authenticated)
+	 * 
+	 * https://derpibooru.org/users/edit
+	 * 
+	 * @type {string}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	key: string;
+
+	/**
+	 * The data representing your image
+	 * 
+	 * Accepts any type supported by https://github.com/form-data/form-data
+	 * 
+	 * @type {Buffer|Stream}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	image?: Buffer | Stream;
+
+	/**
+	 * The URL to your image, if you don't have it as a file
+	 * 
+	 * @type {string}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	url?: string;
+
+	/**
+	 * The fuzziness value to use to search with (between 0.2 and 0,5)
+	 *
+	 * @type {number}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	fuzziness?: number;
 }
 
 /**
@@ -278,7 +318,7 @@ export class Fetch {
 			this.tagIDToURLMap.set(id, curId);
 		}
 
-		let tag = this.jsonConvert.deserializeObject(json, Tag) as Tag;
+		let tag = this.jsonConvert.deserializeObject(json, Tag);
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
 		return tag;
@@ -321,6 +361,42 @@ export class Fetch {
 		searchResults.sortOrder = sortOrder;
 		searchResults.filterID = filterID;
 		return searchResults;
+	}
+
+	/**
+	 * Searches for images that are visually similar to the image provided.
+	 *
+	 * @static
+	 * @param {ReverseImageSearchOptions} reverseImageSearchOptions The options to search with
+	 * @returns {Promise<ReverseImageSearchResults>} A Promise wrapping the returned results
+	 * @memberof Fetch
+	 */
+	public static async reverseImageSearch(reverseImageSearchOptions: ReverseImageSearchOptions): Promise<ReverseImageSearchResults> {
+		let { key, image, url, fuzziness } = reverseImageSearchOptions;
+
+		if (!image && !url) throw new Error('Invalid argument; either image or url must be provided.');
+
+		if (!fuzziness)           fuzziness = 0.25; // default value
+		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
+		else if (fuzziness < 0.2) fuzziness = 0.2;  // clamp low
+
+		const options: request.Options = {
+			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
+			method: 'POST',
+			formData: {
+				key: key,
+				image: image,
+				scraper_url: url,
+				fuzziness: fuzziness.toFixed(2) // just to be safe
+			}
+		};
+
+		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
+
+		// TODO: does this paginate?
+
+		return reverseImageSearch;
 	}
 
 	/**
