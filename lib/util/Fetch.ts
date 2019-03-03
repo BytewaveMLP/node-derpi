@@ -119,6 +119,14 @@ export interface ReverseImageSearchOptions {
 	 * @memberof ReverseImageSearchOptions
 	 */
 	url?: string;
+
+	/**
+	 * The fuzziness value to use to search with (between 0.2 and 0,5)
+	 *
+	 * @type {number}
+	 * @memberof ReverseImageSearchOptions
+	 */
+	fuzziness?: number;
 }
 
 /**
@@ -364,7 +372,13 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async reverseImageSearch(reverseImageSearchOptions: ReverseImageSearchOptions): Promise<ReverseImageSearchResults> {
-		let { key, image, url } = reverseImageSearchOptions;
+		let { key, image, url, fuzziness } = reverseImageSearchOptions;
+
+		if (!image && !url) throw new Error('Invalid argument; either image or url must be provided.');
+
+		if (!fuzziness)           fuzziness = 0.25; // default value
+		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
+		else if (fuzziness < 0.2) fuzziness = 0.2;  // clamp low
 
 		const options: request.Options = {
 			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
@@ -372,12 +386,15 @@ export class Fetch {
 			formData: {
 				key: key,
 				image: image,
-				scraper_url: url
+				scraper_url: url,
+				fuzziness: fuzziness.toFixed(2) // just to be safe
 			}
-		}
+		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
+
+		// TODO: does this paginate?
 
 		return reverseImageSearch;
 	}
