@@ -391,7 +391,7 @@ export class Fetch {
 
 		if (!options.formData) throw new Error('literally should never happen'); // just here to make typescript happy
 
-		if (url)        options.formData.url = url;
+		if (url)        options.formData.scraper_url = url;
 		else if (image) options.formData.image = image;
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
