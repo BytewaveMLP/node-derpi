@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DateConverter | node-derpi</title>
+	<title>ReverseImageSearchResults | node-derpi</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="dateconverter.html">DateConverter</a>
+					<a href="reverseimagesearchresults.html">ReverseImageSearchResults</a>
 				</li>
 			</ul>
-			<h1>Class DateConverter</h1>
+			<h1>Class ReverseImageSearchResults</h1>
 		</div>
 	</div>
 </header>
@@ -69,16 +69,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Converts ISO-8601 strings to Date objects</p>
+						<p>Represents a page of search results</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>export</dt>
 						<dd></dd>
 						<dt>class</dt>
-						<dd><p>DateConverter</p>
-						</dd>
-						<dt>implements</dt>
-						<dd><p>{JsonCustomConvert<Date>}</p>
+						<dd><p>SearchResults</p>
 						</dd>
 					</dl>
 				</div>
@@ -87,14 +84,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DateConverter</span>
+						<span class="target">ReverseImageSearchResults</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">JsonCustomConvert</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -102,62 +93,66 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="reverseimagesearchresults.html#images" class="tsd-kind-icon">images</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="reverseimagesearchresults.html#total" class="tsd-kind-icon">total</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deserialize" class="tsd-anchor"></a>
-					<h3>deserialize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deserialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/DateConverter.ts#L17">util/DateConverter.ts:17</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>date: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="images" class="tsd-anchor"></a>
+					<h3>images</h3>
+					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <a href="image.html" class="tsd-signature-type">Image</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/api/ReverseImageSearchResults.ts#L21">api/ReverseImageSearchResults.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The images on this page of results</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{Image[]}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchResults</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="serialize" class="tsd-anchor"></a>
-					<h3>serialize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/DateConverter.ts#L13">util/DateConverter.ts:13</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>date: <span class="tsd-signature-type">Date</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="total" class="tsd-anchor"></a>
+					<h3>total</h3>
+					<div class="tsd-signature tsd-kind-icon">total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/api/ReverseImageSearchResults.ts#L31">api/ReverseImageSearchResults.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The total number of images returned by this search</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchResults</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -189,21 +184,9 @@
 					<li class=" tsd-kind-class">
 						<a href="comment.html" class="tsd-kind-icon">Comment</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-is-private">
+					<li class=" tsd-kind-class tsd-is-private">
 						<a href="dateconverter.html" class="tsd-kind-icon">Date<wbr>Converter</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="fetch.html" class="tsd-kind-icon">Fetch</a>
 					</li>
@@ -219,9 +202,21 @@
 					<li class=" tsd-kind-class">
 						<a href="link.html" class="tsd-kind-icon">Link</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="reverseimagesearchresults.html" class="tsd-kind-icon">Reverse<wbr>Image<wbr>Search<wbr>Results</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="reverseimagesearchresults.html#images" class="tsd-kind-icon">images</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="reverseimagesearchresults.html#total" class="tsd-kind-icon">total</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="searchresults.html" class="tsd-kind-icon">Search<wbr>Results</a>
 					</li>

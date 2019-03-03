@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DateConverter | node-derpi</title>
+	<title>ReverseImageSearchOptions | node-derpi</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,45 +56,22 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="dateconverter.html">DateConverter</a>
+					<a href="reverseimagesearchoptions.html">ReverseImageSearchOptions</a>
 				</li>
 			</ul>
-			<h1>Class DateConverter</h1>
+			<h1>Interface ReverseImageSearchOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Converts ISO-8601 strings to Date objects</p>
-					</div>
-					<dl class="tsd-comment-tags">
-						<dt>export</dt>
-						<dd></dd>
-						<dt>class</dt>
-						<dd><p>DateConverter</p>
-						</dd>
-						<dt>implements</dt>
-						<dd><p>{JsonCustomConvert<Date>}</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DateConverter</span>
+						<span class="target">ReverseImageSearchOptions</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">JsonCustomConvert</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -102,62 +79,112 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="reverseimagesearchoptions.html#fuzziness" class="tsd-kind-icon">fuzziness</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="reverseimagesearchoptions.html#image" class="tsd-kind-icon">image</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="reverseimagesearchoptions.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="reverseimagesearchoptions.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deserialize" class="tsd-anchor"></a>
-					<h3>deserialize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deserialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/DateConverter.ts#L17">util/DateConverter.ts:17</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>date: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fuzziness" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> fuzziness</h3>
+					<div class="tsd-signature tsd-kind-icon">fuzziness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/Fetch.ts#L129">util/Fetch.ts:129</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The fuzziness value to use to search with (between 0.2 and 0,5)</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchOptions</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="serialize" class="tsd-anchor"></a>
-					<h3>serialize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">serialize<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/DateConverter.ts#L13">util/DateConverter.ts:13</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>date: <span class="tsd-signature-type">Date</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="image" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> image</h3>
+					<div class="tsd-signature tsd-kind-icon">image<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Stream</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/Fetch.ts#L113">util/Fetch.ts:113</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The data representing your image</p>
+						</div>
+						<p>Accepts any type supported by <a href="https://github.com/form-data/form-data">https://github.com/form-data/form-data</a></p>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{Buffer|Stream}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchOptions</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="key" class="tsd-anchor"></a>
+					<h3>key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/Fetch.ts#L103">util/Fetch.ts:103</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Your Derpi API key (required as reverse image search is authenticated)</p>
+						</div>
+						<p><a href="https://derpibooru.org/users/edit">https://derpibooru.org/users/edit</a></p>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchOptions</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="url" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> url</h3>
+					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/c441c1b/lib/util/Fetch.ts#L121">util/Fetch.ts:121</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The URL to your image, if you don&#39;t have it as a file</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>ReverseImageSearchOptions</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -181,70 +208,76 @@
 						<a href="../enums/resultsortorder.html" class="tsd-kind-icon">Result<wbr>Sort<wbr>Order</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="award.html" class="tsd-kind-icon">Award</a>
+						<a href="../classes/award.html" class="tsd-kind-icon">Award</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="collection.html" class="tsd-kind-icon">Collection</a>
+						<a href="../classes/collection.html" class="tsd-kind-icon">Collection</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="comment.html" class="tsd-kind-icon">Comment</a>
+						<a href="../classes/comment.html" class="tsd-kind-icon">Comment</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-private">
+						<a href="../classes/dateconverter.html" class="tsd-kind-icon">Date<wbr>Converter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/fetch.html" class="tsd-kind-icon">Fetch</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/image.html" class="tsd-kind-icon">Image</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/imagecomments.html" class="tsd-kind-icon">Image<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/imagerepresentations.html" class="tsd-kind-icon">Image<wbr>Representations</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/link.html" class="tsd-kind-icon">Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/reverseimagesearchresults.html" class="tsd-kind-icon">Reverse<wbr>Image<wbr>Search<wbr>Results</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/searchresults.html" class="tsd-kind-icon">Search<wbr>Results</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tag.html" class="tsd-kind-icon">Tag</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tagcollection.html" class="tsd-kind-icon">Tag<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tagdetails.html" class="tsd-kind-icon">Tag<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-private">
+						<a href="../classes/urlconverter.html" class="tsd-kind-icon">URLConverter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/user.html" class="tsd-kind-icon">User</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-is-private">
-						<a href="dateconverter.html" class="tsd-kind-icon">Date<wbr>Converter</a>
+					<li class="current tsd-kind-interface">
+						<a href="reverseimagesearchoptions.html" class="tsd-kind-icon">Reverse<wbr>Image<wbr>Search<wbr>Options</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="dateconverter.html#deserialize" class="tsd-kind-icon">deserialize</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="reverseimagesearchoptions.html#fuzziness" class="tsd-kind-icon">fuzziness</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="dateconverter.html#serialize" class="tsd-kind-icon">serialize</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="reverseimagesearchoptions.html#image" class="tsd-kind-icon">image</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="reverseimagesearchoptions.html#key" class="tsd-kind-icon">key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="reverseimagesearchoptions.html#url" class="tsd-kind-icon">url</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="fetch.html" class="tsd-kind-icon">Fetch</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="image.html" class="tsd-kind-icon">Image</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="imagecomments.html" class="tsd-kind-icon">Image<wbr>Comments</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="imagerepresentations.html" class="tsd-kind-icon">Image<wbr>Representations</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="link.html" class="tsd-kind-icon">Link</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="reverseimagesearchresults.html" class="tsd-kind-icon">Reverse<wbr>Image<wbr>Search<wbr>Results</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="searchresults.html" class="tsd-kind-icon">Search<wbr>Results</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="tag.html" class="tsd-kind-icon">Tag</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="tagcollection.html" class="tsd-kind-icon">Tag<wbr>Collection</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="tagdetails.html" class="tsd-kind-icon">Tag<wbr>Details</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-private">
-						<a href="urlconverter.html" class="tsd-kind-icon">URLConverter</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="user.html" class="tsd-kind-icon">User</a>
-					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/reverseimagesearchoptions.html" class="tsd-kind-icon">Reverse<wbr>Image<wbr>Search<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/searchoptions.html" class="tsd-kind-icon">Search<wbr>Options</a>
+						<a href="searchoptions.html" class="tsd-kind-icon">Search<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-private">
 						<a href="../globals.html#comments_url" class="tsd-kind-icon">COMMENTS_<wbr>URL</a>
