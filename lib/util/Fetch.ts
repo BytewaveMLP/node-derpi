@@ -355,6 +355,14 @@ export class Fetch {
 		return searchResults;
 	}
 
+	/**
+	 * Searches for images that are visually similar to the image provided.
+	 *
+	 * @static
+	 * @param {ReverseImageSearchOptions} reverseImageSearchOptions The options to search with
+	 * @returns {Promise<ReverseImageSearchResults>} A Promise wrapping the returned results
+	 * @memberof Fetch
+	 */
 	public static async reverseImageSearch(reverseImageSearchOptions: ReverseImageSearchOptions): Promise<ReverseImageSearchResults> {
 		let { key, image, url } = reverseImageSearchOptions;
 
