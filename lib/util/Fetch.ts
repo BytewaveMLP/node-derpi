@@ -380,16 +380,19 @@ export class Fetch {
 		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
 		else if (fuzziness < 0.2) fuzziness = 0.2;  // clamp low
 
-		const options: request.Options = {
+		let options: request.Options = {
 			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
 			method: 'POST',
 			formData: {
 				key: key,
-				image: image,
-				scraper_url: url,
 				fuzziness: fuzziness.toFixed(2) // just to be safe
 			}
 		};
+
+		if (!options.formData) throw new Error('literally should never happen'); // just here to make typescript happy
+
+		if (url)        options.formData.url = url;
+		else if (image) options.formData.image = image;
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
