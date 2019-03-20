@@ -93,20 +93,20 @@ export interface SearchOptions {
 
 export interface ReverseImageSearchOptions {
 	/**
-	 * Your Derpi API key (required as reverse image search is authenticated)
-	 * 
-	 * https://derpibooru.org/users/edit
-	 * 
+	 * Your Derpi API key (required if image is set)
+	 *
+	 * Get yours at https://derpibooru.org/users/edit
+	 *
 	 * @type {string}
 	 * @memberof ReverseImageSearchOptions
 	 */
-	key: string;
+	key?: string;
 
 	/**
 	 * The data representing your image
-	 * 
+	 *
 	 * Accepts any type supported by https://github.com/form-data/form-data
-	 * 
+	 *
 	 * @type {Buffer|Stream}
 	 * @memberof ReverseImageSearchOptions
 	 */
@@ -375,6 +375,7 @@ export class Fetch {
 		let { key, image, url, fuzziness } = reverseImageSearchOptions;
 
 		if (!image && !url) throw new Error('Invalid argument; either image or url must be provided.');
+		if (image && !key)  throw new Error('Invalid argument; the key parameter must be provided for searching by image');
 
 		if (!fuzziness)           fuzziness = 0.25; // default value
 		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
@@ -382,17 +383,19 @@ export class Fetch {
 
 		let options: request.Options = {
 			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
-			method: 'POST',
+			method: key ? 'POST' : 'GET', // more Derpi API weirdness! yay!
 			formData: {
-				key: key,
 				fuzziness: fuzziness.toFixed(2) // just to be safe
 			}
 		};
 
 		if (!options.formData) throw new Error('literally should never happen'); // just here to make typescript happy
 
-		if (url)        options.formData.scraper_url = url;
-		else if (image) options.formData.image = image;
+		if (url) options.formData.scraper_url = url;
+		else if (image) {
+			options.formData.key   = key;
+			options.formData.image = image;
+		}
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
