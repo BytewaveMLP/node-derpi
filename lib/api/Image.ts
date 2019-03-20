@@ -1,12 +1,13 @@
+import { JsonObject, JsonProperty } from 'json2typescript';
+
 import { User } from './User';
 import { ImageRepresentations } from './ImageRepresentations';
 import * as Consts from '../util/Consts';
 import { DateConverter } from '../util/DateConverter';
-
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { Fetch } from '../util/Fetch';
 import { TagCollection } from '../util/TagCollection';
 import { ImageComments } from './ImageComments';
+import { Tag } from './Tag';
 
 /**
  * Represents a single image
@@ -75,6 +76,49 @@ export class Image {
 	 */
 	@JsonProperty('tags', String)
 	public readonly tagString: string = '';
+
+	private _tagNames: string[];
+
+	/**
+	 * Gets a list of tag names on the image; saves an HTTP request for each tag
+	 *
+	 * @readonly
+	 * @type {string[]}
+	 * @memberof Image
+	 */
+	get tagNames(): string[] {
+		if (this._tagNames) this._tagNames = this.tagString.split(', ');
+		return this._tagNames;
+	}
+
+	/**
+	 * Gets the name of the artist of the image
+	 *
+	 * Returns null if the image has no artist
+	 *
+	 * @readonly
+	 * @type {(string | null)}
+	 * @memberof Image
+	 */
+	get artistName(): string | null {
+		let artist = this.tagNames.find(tag => tag.startsWith('artist:'));
+		if (!artist) return null;
+
+		return artist.substring('artist:'.length);
+	}
+
+	/**
+	 * Gets the Tag object for the artist tag on the image
+	 *
+	 * Returns null if the image has no artist
+	 *
+	 * @returns {(Promise<Tag | null>)}
+	 * @memberof Image
+	 */
+	public async artist(): Promise<Tag | null> {
+		if (!this.artistName) return null;
+		return Fetch.fetchTag(this.artistName);
+	}
 
 	/**
 	 * The width of the image
