@@ -77,8 +77,6 @@ export class Image {
 	@JsonProperty('tags', String)
 	public readonly tagString: string = '';
 
-	private _tagNames: string[];
-
 	/**
 	 * Gets a list of tag names on the image; saves an HTTP request for each tag
 	 *
