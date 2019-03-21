@@ -87,8 +87,7 @@ export class Image {
 	 * @memberof Image
 	 */
 	get tagNames(): string[] {
-		if (!this._tagNames) this._tagNames = this.tagString.split(', ');
-		return this._tagNames;
+		return this.tagString.split(', ');
 	}
 
 	/**
