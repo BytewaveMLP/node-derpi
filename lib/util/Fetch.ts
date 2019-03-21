@@ -114,7 +114,7 @@ export interface ReverseImageSearchOptions {
 
 	/**
 	 * The URL to your image, if you don't have it as a file
-	 * 
+	 *
 	 * @type {string}
 	 * @memberof ReverseImageSearchOptions
 	 */

@@ -1,3 +1,5 @@
+// tslint:disable: await-promise
+
 /**
  * A readonly collection type
  *

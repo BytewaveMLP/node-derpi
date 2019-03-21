@@ -42,7 +42,7 @@ export const SEARCH_URL = URL_BASE + '/search.json';
 
 /**
  * Represents the URL for reverse image searches
- * 
+ *
  * @private
  */
 export const REVERSE_IMAGE_SEARCH_URL = URL_BASE + '/search/reverse.json';

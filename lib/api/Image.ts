@@ -326,6 +326,8 @@ export class Image {
 		// it is ALSO a valid login name (see: https://derpibooru.org/profiles/Background%20Pony).
 		// So, I have to store both the uploader **and** uploader ID here to make sure both are set to values indicating a guest.
 		// This API is going to drive me insane.
+
+		// tslint:disable-next-line: strict-type-predicates
 		if (this.uploaderName === 'Background Pony' && this.uploaderID === null) {
 			return new User();
 		}
