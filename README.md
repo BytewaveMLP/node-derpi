@@ -1,6 +1,6 @@
 # node-derpi
 
-[![GitHub version](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi.svg)](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi) [![npm version](https://badge.fury.io/js/node-derpi.svg)](https://badge.fury.io/js/node-derpi)
+[![GitHub version](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi.svg)](https://badge.fury.io/gh/BytewaveMLP%2Fnode-derpi) [![npm version](https://badge.fury.io/js/node-derpi.svg)](https://badge.fury.io/js/node-derpi) [![Discord chat](https://img.shields.io/discord/275711953274404866.svg?logo=discord&color=7289DA&label=Discord%20chat)](https://discord.gg/AukVbRR)
 
 > A Derpibooru API wrapper for Node.js
 
