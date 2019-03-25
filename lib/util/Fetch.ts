@@ -9,9 +9,10 @@ import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
 import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
-import * as request from 'request';
+import * as got from 'got';
 import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+import * as FormData from 'form-data';
 
 /**
  * Represents various sort formats for results
@@ -342,9 +343,8 @@ export class Fetch {
 		if (page === undefined) page = 0;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
-		const options: request.Options = {
-			uri: URLs.SEARCH_URL,
-			qs: {
+		const options: got.GotOptions<string> = {
+			query: {
 				q: query,
 				sf: sortFormat,
 				sd: sortOrder,
@@ -353,7 +353,7 @@ export class Fetch {
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.SEARCH_URL, options);
 		let searchResults = this.jsonConvert.deserializeObject(json, SearchResults);
 		searchResults.nextPage = page + 1;
 		searchResults.query = query;
@@ -381,23 +381,21 @@ export class Fetch {
 		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
 		else if (fuzziness < 0.2) fuzziness = 0.2;  // clamp low
 
-		let options: request.Options = {
-			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
-			method: key ? 'POST' : 'GET', // more Derpi API weirdness! yay!
-			formData: {
-				fuzziness: fuzziness.toFixed(2) // just to be safe
-			}
-		};
+		let options: got.GotBodyOptions<string> = {};
 
-		if (!options.formData) throw new Error('literally should never happen'); // just here to make typescript happy
-
-		if (url) options.formData.scraper_url = url;
-		else if (image) {
-			options.formData.key   = key;
-			options.formData.image = image;
+		if (url) {
+			options.method = 'GET';
+			options.query = { scraper_url: url };
+			if (key) (options.query as any).key = key;
+		} else if (image) {
+			options.method = 'POST';
+			const formData = new FormData();
+			formData.append('key', key);
+			formData.append('image', image);
+			options.body = formData;
 		}
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.REVERSE_IMAGE_SEARCH_URL, options));
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
 
 		// TODO: does this paginate?
@@ -417,14 +415,13 @@ export class Fetch {
 	public static async fetchComments(imageID: number, page?: number): Promise<ImageComments> {
 		if (page === undefined) page = 1;
 
-		const options: request.Options = {
-			uri: URLs.COMMENTS_URL.replace('{}', '' + imageID),
-			qs: {
+		const options: got.GotOptions<string> = {
+			query: {
 				page: page
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.COMMENTS_URL.replace('{}', '' + imageID), options);
 		let comments = this.jsonConvert.deserializeObject(json, ImageComments);
 		comments.nextPage = page + 1;
 		comments.imageID = imageID;
@@ -434,28 +431,13 @@ export class Fetch {
 	/**
 	 * Boilerplate to fetch JSON data from Derpibooru
 	 *
-	 * @static
 	 * @private
-	 * @param {request.UriOptions} options Options for the request
-	 * @returns {Promise<any>} A Promise wrapping the returned data
-	 * @memberof Fetch
+	 * @param endpoint - The endpoint to pull data from
+	 * @param options  - Options for the request
+	 * @returns A Promise wrapping the returned data
 	 */
-	private static async fetchJSON(options: request.Options): Promise<any> {
-		return new Promise<any>((resolve, reject) => {
-			const opts = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
-
-			request.get(opts, (err: any, response: request.Response, body: any) => {
-				if (err) {
-					return reject(err);
-				}
-
-				const status = response.statusCode;
-				if (status !== Consts.HTTP_200_OK && status !== Consts.HTTP_301_MOVED_PERMANENTLY) {
-					return reject(new Error(`Received status code ${status}`));
-				}
-
-				return resolve(body);
-			});
-		});
+	private static async fetchJSON(endpoint: string, options: got.GotOptions<string | null>): Promise<any> {
+		const response = await got(endpoint, Object.assign({}, Consts.DEFAULT_GOT_OPTS, options));
+		return response.body;
 	}
 }

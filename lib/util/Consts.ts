@@ -1,3 +1,5 @@
+import got = require('got');
+
 /**
  * Represents the Unix epoch
  *
@@ -13,15 +15,16 @@ export const DEFAULT_DATE = new Date(0);
 export const USER_AGENT = 'node-derpi/' + require('../../package.json').version;
 
 /**
- * Represents the default request options used for HTTP requests
+ * Represents the default Got options used for HTTP requests
  *
  * @private
  */
-export const DEFAULT_REQUEST_OPTS = {
-	'json': true,
-	'headers': {
+export const DEFAULT_GOT_OPTS: got.GotJSONOptions = {
+	headers: {
 		'User-Agent': USER_AGENT
-	}
+	},
+	json: true,
+	encoding: 'utf8'
 };
 
 /**
