@@ -169,11 +169,9 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async fetchImage(id: string | number): Promise<Image> {
-		const options: request.Options = {
-			uri: URLs.IMAGE_URL.replace('{}', (id as string))
-		};
+		const options: got.GotOptions<string> = {};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.IMAGE_URL.replace('{}', (id as string)), options);
 		return this.jsonConvert.deserializeObject(json, Image);
 	}
 
@@ -186,11 +184,9 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async fetchUser(username: string): Promise<User> {
-		const options: request.Options = {
-			uri: URLs.USER_URL.replace('{}', Helpers.slugify(username))
-		};
+		const options: got.GotOptions<string> = {};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.USER_URL.replace('{}', Helpers.slugify(username)), options);
 		return this.jsonConvert.deserializeObject(json, User);
 	}
 
@@ -212,18 +208,14 @@ export class Fetch {
 			curId = (this.userIDToURLMap.get(id) as string);
 		}
 
-		const options: request.Options = {
-			uri: URLs.USER_URL.replace('{}', curId)
-		};
-		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
-		let json = await this.fetchJSON(requestOptions);
+		let options: got.GotOptions<string> = {};
+		let json = await this.fetchJSON(URLs.USER_URL.replace('{}', curId), options);
 
 		let loopCount = 0;
 
 		while (json.id !== id) {
 			curId = '0' + curId;
-			requestOptions.uri = URLs.USER_URL.replace('{}', curId);
-			json = await this.fetchJSON(requestOptions);
+			json = await this.fetchJSON(URLs.USER_URL.replace('{}', curId), options);
 
 			loopCount++;
 
@@ -250,18 +242,17 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async fetchTag(name: string, page?: number, filterID?: DefaultFilters | number): Promise<Tag> {
-		if (page === undefined) page = 1;
+		if (page === undefined)     page = 1;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
-		const options: request.Options = {
-			uri: URLs.TAG_URL.replace('{}', Helpers.slugify(name)),
-			qs: {
+		const options: got.GotOptions<string> = {
+			query: {
 				page: page,
 				filter_id: filterID
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(URLs.TAG_URL.replace('{}', Helpers.slugify(name)), options);
 		let tag = this.jsonConvert.deserializeObject(json, Tag);
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
@@ -291,22 +282,19 @@ export class Fetch {
 			curId = (this.tagIDToURLMap.get(id) as string);
 		}
 
-		const options: request.Options = {
-			uri: URLs.TAG_URL.replace('{}', curId),
-			qs: {
+		let options: got.GotOptions<string> = {
+			query: {
 				page: page,
 				filter_id: filterID
 			}
 		};
-		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
-		let json = await this.fetchJSON(requestOptions);
+		let json = await this.fetchJSON(URLs.TAG_URL.replace('{}', curId), options);
 
 		let loopCount = 0;
 
 		while (json.tag.id !== id) {
 			curId = '0' + curId;
-			requestOptions.uri = URLs.TAG_URL.replace('{}', curId);
-			json = await this.fetchJSON(requestOptions);
+			json = await this.fetchJSON(URLs.TAG_URL.replace('{}', curId), options);
 
 			loopCount++;
 

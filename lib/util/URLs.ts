@@ -6,28 +6,14 @@
 export const URL_BASE = 'https://derpibooru.org';
 
 /**
- * Represents the URL for user profiles (by ID)
- * 
- * @private
- */
-export const USER_ID_URL = '/api/v2/users/show.json';
-
-/**
- * Represents the URL for user profiles (by name)
+ * Represents the URL for user profiles
  *
  * @private
  */
 export const USER_URL = '/profiles/{}.json';
 
 /**
- * Represents the URL for tag details (by ID)
- *
- * @private
- */
-export const TAG_ID_URL = '/api/v2/tags/show.json';
-
-/**
- * Represents the URL for tag details (by name)
+ * Represents the URL for tag details
  *
  * @private
  */
