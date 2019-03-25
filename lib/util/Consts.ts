@@ -1,4 +1,6 @@
-import got = require('got');
+import * as URLs from './URLs';
+
+import * as Got from 'got';
 
 /**
  * Represents the Unix epoch
@@ -19,12 +21,14 @@ export const USER_AGENT = 'node-derpi/' + require('../../package.json').version;
  *
  * @private
  */
-export const DEFAULT_GOT_OPTS: got.GotJSONOptions = {
+export const DEFAULT_GOT_OPTS: Got.GotJSONOptions & { shared: boolean } = {
 	headers: {
 		'User-Agent': USER_AGENT
 	},
 	json: true,
-	encoding: 'utf8'
+	encoding: 'utf8',
+	baseUrl: URLs.URL_BASE,
+	shared: false
 };
 
 /**

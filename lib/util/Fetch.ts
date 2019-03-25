@@ -9,7 +9,7 @@ import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
 import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
-import * as got from 'got';
+import * as Got from 'got';
 import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
 import * as FormData from 'form-data';
@@ -144,20 +144,21 @@ const MAXIUMUM_ID_FETCH_RETRIES = 10;
  * @class Fetch
  */
 export class Fetch {
-	private static jsonConvert: JsonConvert = new JsonConvert();
-	private static tagIDToURLMap: Map<number, string> = new Map<number, string>();
-	private static userIDToURLMap: Map<number, string> = new Map<number, string>();
+	private static jsonConvert    = new JsonConvert();
+	private static tagIDToURLMap  = new Map<number, string>();
+	private static userIDToURLMap = new Map<number, string>();
+
+	private static defaultOptions: Got.GotJSONOptions;
 
 	/**
-	 * Sets up some basic settings for the Fetch instance
+	 * Sets up the Fetch class with some optional parameters.
 	 *
-	 * YOU SHOULD NOT NEED TO CALL THIS YOURSELF. IT IS DONE AT MODULE INITIALIZATION TIME.
-	 *
-	 * @static
-	 * @memberof Fetch
+	 * @param cache The Keyv cache adapter to use
 	 */
-	public static setup() {
+	public static setup(cache?: Got.Cache) {
 		this.jsonConvert.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
+		this.defaultOptions = Consts.DEFAULT_GOT_OPTS;
+		if (cache) this.defaultOptions.cache = cache;
 	}
 
 	/**
@@ -169,7 +170,7 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async fetchImage(id: string | number): Promise<Image> {
-		const options: got.GotOptions<string> = {};
+		const options: Got.GotOptions<string> = {};
 
 		const json = await this.fetchJSON(URLs.IMAGE_URL.replace('{}', (id as string)), options);
 		return this.jsonConvert.deserializeObject(json, Image);
@@ -184,7 +185,7 @@ export class Fetch {
 	 * @memberof Fetch
 	 */
 	public static async fetchUser(username: string): Promise<User> {
-		const options: got.GotOptions<string> = {};
+		const options: Got.GotOptions<string> = {};
 
 		const json = await this.fetchJSON(URLs.USER_URL.replace('{}', Helpers.slugify(username)), options);
 		return this.jsonConvert.deserializeObject(json, User);
@@ -208,7 +209,7 @@ export class Fetch {
 			curId = (this.userIDToURLMap.get(id) as string);
 		}
 
-		let options: got.GotOptions<string> = {};
+		let options: Got.GotOptions<string> = {};
 		let json = await this.fetchJSON(URLs.USER_URL.replace('{}', curId), options);
 
 		let loopCount = 0;
@@ -245,7 +246,7 @@ export class Fetch {
 		if (page === undefined)     page = 1;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
-		const options: got.GotOptions<string> = {
+		const options: Got.GotOptions<string> = {
 			query: {
 				page: page,
 				filter_id: filterID
@@ -282,7 +283,7 @@ export class Fetch {
 			curId = (this.tagIDToURLMap.get(id) as string);
 		}
 
-		let options: got.GotOptions<string> = {
+		let options: Got.GotOptions<string> = {
 			query: {
 				page: page,
 				filter_id: filterID
@@ -331,7 +332,7 @@ export class Fetch {
 		if (page === undefined) page = 0;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
-		const options: got.GotOptions<string> = {
+		const options: Got.GotOptions<string> = {
 			query: {
 				q: query,
 				sf: sortFormat,
@@ -369,7 +370,7 @@ export class Fetch {
 		else if (fuzziness > 0.5) fuzziness = 0.5;  // clamp high
 		else if (fuzziness < 0.2) fuzziness = 0.2;  // clamp low
 
-		let options: got.GotBodyOptions<string> = {};
+		let options: Got.GotBodyOptions<string> = {};
 
 		if (url) {
 			options.method = 'GET';
@@ -383,7 +384,7 @@ export class Fetch {
 			options.body = formData;
 		}
 
-		const json = await this.fetchJSON(URLs.REVERSE_IMAGE_SEARCH_URL, options));
+		const json = await this.fetchJSON(URLs.REVERSE_IMAGE_SEARCH_URL, options);
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
 
 		// TODO: does this paginate?
@@ -403,7 +404,7 @@ export class Fetch {
 	public static async fetchComments(imageID: number, page?: number): Promise<ImageComments> {
 		if (page === undefined) page = 1;
 
-		const options: got.GotOptions<string> = {
+		const options: Got.GotOptions<string> = {
 			query: {
 				page: page
 			}
@@ -424,8 +425,10 @@ export class Fetch {
 	 * @param options  - Options for the request
 	 * @returns A Promise wrapping the returned data
 	 */
-	private static async fetchJSON(endpoint: string, options: got.GotOptions<string | null>): Promise<any> {
-		const response = await got(endpoint, Object.assign({}, Consts.DEFAULT_GOT_OPTS, options));
+	private static async fetchJSON(endpoint: string, options: Got.GotOptions<string | null>): Promise<any> {
+		const response = await Got(endpoint, Object.assign({}, this.defaultOptions, options));
+		console.log(response.fromCache);
+		console.log((response as any).cachePolicy.storable());
 		return response.body;
 	}
 }
