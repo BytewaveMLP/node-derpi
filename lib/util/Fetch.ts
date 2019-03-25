@@ -153,7 +153,7 @@ export class Fetch {
 	/**
 	 * Sets up the Fetch class with some optional parameters.
 	 *
-	 * @param cache The Keyv cache adapter to use
+	 * @param cache The Keyv cache adapter to use (or, optionally, a simple Map)
 	 */
 	public static setup(cache?: Got.Cache) {
 		this.jsonConvert.valueCheckingMode = ValueCheckingMode.ALLOW_NULL;
