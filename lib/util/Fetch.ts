@@ -427,8 +427,6 @@ export class Fetch {
 	 */
 	private static async fetchJSON(endpoint: string, options: Got.GotOptions<string | null>): Promise<any> {
 		const response = await Got(endpoint, Object.assign({}, this.defaultOptions, options));
-		console.log(response.fromCache);
-		console.log((response as any).cachePolicy.storable());
 		return response.body;
 	}
 }
