@@ -5,7 +5,7 @@
  */
 
 import { use, expect } from 'chai';
-import * as chaiAsPromised from 'chai-as-promised';
+import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
@@ -28,13 +28,13 @@ describe('Data classes', () => {
 		});
 
 		it('should convert awarded_on to a Date in .awarded', () => {
-			let award = jsonConvert.deserialize(jsonObj, Award);
+			let award = jsonConvert.deserialize(jsonObj, Award) as Award;
 			expect(award.awarded).to.be.a('Date');
 			expect(award.awarded.getFullYear()).to.equal(2018);
 		});
 
 		it('should prepend https: to image_url in .image', () => {
-			let award = jsonConvert.deserialize(jsonObj, Award);
+			let award = jsonConvert.deserialize(jsonObj, Award) as Award;
 			expect(award.image).to.equal('https:' + jsonObj.image_url);
 		});
 	});
@@ -100,6 +100,12 @@ describe('HTTP fetching', () => {
 					}
 				});
 			});
+		});
+
+		it('should transparently handle duplicate images', () => {
+			return expect(Fetch.fetchImage(567343))
+				.to.eventually.have.property('id')
+				.that.equals(567591);
 		});
 	});
 
