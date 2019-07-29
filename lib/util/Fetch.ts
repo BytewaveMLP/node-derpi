@@ -400,7 +400,12 @@ export class Fetch {
 			options.formData.image = image;
 		}
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		let json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+
+		// This operates under the assumption that all images with duplicate_of will have their duplicates show up under the other reverse image results
+		// TODO: does that actually happen?
+		json.search = json.search.filter((image: any) => !image.duplicate_of);
+
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
 
 		// TODO: does this paginate?
