@@ -173,6 +173,9 @@ export class Fetch {
 		};
 
 		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+
+		// transparently handle duplicate images
+		if (json['duplicate_of']) return this.fetchImage(json['duplicate_of']);
 		return this.jsonConvert.deserializeObject(json, Image);
 	}
 
