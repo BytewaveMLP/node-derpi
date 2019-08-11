@@ -91,4 +91,26 @@ export class ImageRepresentations {
 	 */
 	@JsonProperty('full', URLConverter)
 	public readonly full: string = '';
+
+	/**
+	 * A WEBM rendering of the image, if it's a gif or webm upload
+	 *
+	 * Optional
+	 *
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
+	@JsonProperty('webm', URLConverter, true)
+	public readonly webm?: string = undefined;
+
+	/**
+	 * An MP4 rendering of the image, if it's a gif or webm upload
+	 * 
+	 * Optional
+	 *
+	 * @type {string}
+	 * @memberof ImageRepresentations
+	 */
+	@JsonProperty('mp4', URLConverter, true)
+	public readonly mp4?: string = undefined;
 }
