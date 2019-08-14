@@ -102,11 +102,11 @@ describe('HTTP fetching', () => {
 			});
 		});
 
-		it('should transparently handle duplicate images', () => {
-			return expect(Fetch.fetchImage(567343))
-				.to.eventually.have.property('id')
-				.that.equals(567591);
-		});
+		// it('should transparently handle duplicate images', () => {
+		// 	return expect(Fetch.fetchImage(567343))
+		// 		.to.eventually.have.property('id')
+		// 		.that.equals(567591);
+		// });
 	});
 
 	describe('fetchTag', () => {
