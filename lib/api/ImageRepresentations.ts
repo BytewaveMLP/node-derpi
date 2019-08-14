@@ -105,7 +105,7 @@ export class ImageRepresentations {
 
 	/**
 	 * An MP4 rendering of the image, if it's a gif or webm upload
-	 * 
+	 *
 	 * Optional
 	 *
 	 * @type {string}
