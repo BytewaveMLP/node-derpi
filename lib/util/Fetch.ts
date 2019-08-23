@@ -21,12 +21,15 @@ import { JsonConvert, ValueCheckingMode } from 'json2typescript';
  */
 export enum ResultSortFormat {
 	CREATION_DATE = 'created_at',
+	LAST_MODIFIED = 'updated_at',
+	INITIAL_POST_DATE = 'first_seen_at',
 	SCORE = 'score',
 	WILSON_SCORE = 'wilson',
 	RELEVANCE = 'relevance',
 	WIDTH = 'width',
 	HEIGHT = 'height',
 	COMMENTS = 'comments',
+	TAG_COUNT = 'tag_count',
 	RANDOM = 'random'
 }
 
