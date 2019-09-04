@@ -123,7 +123,7 @@ describe('HTTP fetching', () => {
 		it('should produce valid search results', () => {
 			return expect(Fetch.search({
 				sortFormat: ResultSortFormat.CREATION_DATE,
-				sortOrder: ResultSortOrder.ASCENDING
+				sortOrder: ResultSortOrder.DESCENDING
 			}))
 				.to.be.fulfilled
 				.and.to.eventually.have.property('images')
