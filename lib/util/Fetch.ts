@@ -175,7 +175,7 @@ export class Fetch {
 			uri: URLs.IMAGE_URL.replace('{}', (id as string))
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(options);
 
 		// transparently handle duplicate images
 		if (json['duplicate_of']) return this.fetchImage(json['duplicate_of']);
@@ -195,7 +195,7 @@ export class Fetch {
 			uri: URLs.USER_URL.replace('{}', Helpers.slugify(username))
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(options);
 		return this.jsonConvert.deserializeObject(json, User);
 	}
 
@@ -220,7 +220,7 @@ export class Fetch {
 		const options: request.Options = {
 			uri: URLs.USER_URL.replace('{}', curId)
 		};
-		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
+		let requestOptions = Object.assign({}, options);
 		let json = await this.fetchJSON(requestOptions);
 
 		let loopCount = 0;
@@ -266,7 +266,7 @@ export class Fetch {
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(options);
 		let tag = this.jsonConvert.deserializeObject(json, Tag);
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
@@ -303,7 +303,7 @@ export class Fetch {
 				filter_id: filterID
 			}
 		};
-		let requestOptions = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
+		let requestOptions = Object.assign({}, options);
 		let json = await this.fetchJSON(requestOptions);
 
 		let loopCount = 0;
@@ -359,7 +359,7 @@ export class Fetch {
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(options);
 		let searchResults = this.jsonConvert.deserializeObject(json, SearchResults);
 		searchResults.nextPage = page + 1;
 		searchResults.query = query;
@@ -403,7 +403,7 @@ export class Fetch {
 			options.formData.image = image;
 		}
 
-		let json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		let json = await this.fetchJSON(options);
 
 		// This operates under the assumption that all images with duplicate_of will have their duplicates show up under the other reverse image results
 		// TODO: does that actually happen?
@@ -435,7 +435,7 @@ export class Fetch {
 			}
 		};
 
-		const json = await this.fetchJSON(Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options));
+		const json = await this.fetchJSON(options);
 		let comments = this.jsonConvert.deserializeObject(json, ImageComments);
 		comments.nextPage = page + 1;
 		comments.imageID = imageID;
