@@ -1,8 +1,9 @@
 name: Node CI
 
+on: [ push, pull_request ]
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,11 +23,3 @@ jobs:
         yarn run test
       env:
         CI: true
-    
-on:
-  push:
-    paths:
-      - '*.ts'
-  pull_request:
-    paths:
-      - '*.ts'
