@@ -147,7 +147,6 @@ const MAXIUMUM_ID_FETCH_RETRIES = 10;
  */
 export class Fetch {
 	private static jsonConvert: JsonConvert = new JsonConvert();
-	private static tagIDToURLMap: Map<number, string> = new Map<number, string>();
 	private static userIDToURLMap: Map<number, string> = new Map<number, string>();
 
 	/**
@@ -439,7 +438,7 @@ export class Fetch {
 						return reject(new Error(`Received status code ${status}`));
 					}
 	
-					resolve(response.body);
+					resolve(body);
 				});
 			} else {
 				
