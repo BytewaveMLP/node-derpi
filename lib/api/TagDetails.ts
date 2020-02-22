@@ -1,7 +1,6 @@
 import { Tag } from './Tag';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { URLConverter } from '../util/URLConverter';
 import { Fetch } from '..';
 import { TagCollection } from '../util/TagCollection';
 
@@ -13,96 +12,8 @@ import { TagCollection } from '../util/TagCollection';
  */
 @JsonObject
 export class TagDetails {
-	/**
-	 * The ID of this tag
-	 *
-	 * @readonly
-	 * @type {number}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('id', Number)
-	public readonly id: number = 0;
 
-	/**
-	 * The name of this tag
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('name', String)
-	public readonly name: string = '';
 
-	/**
-	 * The sluggified name of this tag
-	 *
-	 * @readonly
-	 * @see Helpers#sluggify
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('slug', String)
-	public readonly slug: string = '';
-
-	/**
-	 * The description of this tag
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('description', String)
-	public readonly description: string = '';
-
-	/**
-	 * The number of images on this tag
-	 *
-	 * @readonly
-	 * @type {number}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('images', Number)
-	public readonly imageCount: number = 0;
-
-	/**
-	 * The namespace this tag is in (part before the colon)
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('namespace', String)
-	public readonly namespace: string = '';
-
-	/**
-	 * The name of the tag in its namespace (part after the colon)
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('name_in_namespace', String)
-	public readonly nameInNamespace: string = '';
-
-	/**
-	 * The category of tags this tag is in
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('category', String)
-	public readonly category: string = '';
-
-	/**
-	 * The image used for spoilering images with this tag
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof TagDetails
-	 */
-	@JsonProperty('spoiler_image_uri', URLConverter)
-	public readonly spoilerImage: string = '';
 
 	/**
 	 * The internal tag IDs for tags implied by this tag

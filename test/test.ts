@@ -92,8 +92,7 @@ describe('HTTP fetching', () => {
 					let firstTag = await tags.first();
 					try {
 						expect(firstTag)
-							.to.have.property('details')
-							.that.has.property('name');
+							.to.have.property('name');
 						done();
 					} catch (err) {
 						done(err);
@@ -113,9 +112,17 @@ describe('HTTP fetching', () => {
 		it('should fetch a valid tag', () => {
 			return expect(Fetch.fetchTag('rainbow dash'))
 				.to.be.fulfilled
-				.and.to.eventually.have.property('details')
-				.that.has.property('name')
+				.and.to.eventually.have.property('name')
 				.that.equals('rainbow dash');
+		});
+	});
+
+	describe('fetchTagById', () => {
+		it('should fetch a valid tag by id', () => {
+			return expect(Fetch.fetchTagByID(27724))
+				.to.be.fulfilled
+				.and.to.eventually.have.property('name')
+				.that.equals('fluttershy');
 		});
 	});
 
@@ -139,6 +146,17 @@ describe('HTTP fetching', () => {
 			return expect(results.fetchNextPage())
 				.to.be.fulfilled
 				.and.to.eventually.have.property('images')
+				.that.has.lengthOf.above(0);
+		});
+	});
+
+	describe('reverse search', () => {
+		it('should produce valid results', () => {
+			return expect(Fetch.reverseImageSearch({
+				url: "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
+			}))
+				.to.be.fulfilled
+				.and.to.eventually.have.property("images")
 				.that.has.lengthOf.above(0);
 		});
 	});

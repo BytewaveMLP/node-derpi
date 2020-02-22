@@ -4,6 +4,7 @@
  * @private
  */
 export const URL_BASE = 'https://derpibooru.org';
+export const URL_BASE_PHILOMENA = 'https://derpibooru.org/api/v1/json';
 
 /**
  * Represents the URL for user profiles
@@ -17,32 +18,41 @@ export const USER_URL = URL_BASE + '/profiles/{}.json';
  *
  * @private
  */
-export const TAG_URL = URL_BASE + '/tags/{}.json';
+export const TAG_URL = URL_BASE_PHILOMENA + '/tags/{}';
+
+/**
+ * Represents the URL for tag searches
+ */
+export const TAG_SEARCH_URL = URL_BASE_PHILOMENA + '/search/tags';
 
 /**
  * Represents the URL for image details
  *
  * @private
  */
-export const IMAGE_URL = URL_BASE + '/images/{}.json';
+export const IMAGE_URL = URL_BASE_PHILOMENA + '/images/{}';
 
 /**
  * Represents the URL for image comments
- *
+ * PHILOMENA: /api/v1/json/search/comments?id:{}
+ * 
  * @private
  */
-export const COMMENTS_URL = URL_BASE + '/images/{}/comments.json';
+export const COMMENTS_URL = URL_BASE_PHILOMENA + '/search/comments';
 
 /**
  * Represents the URL for searches
+ * PHILOMENA: /api/v1/json/search/images
  *
  * @private
  */
-export const SEARCH_URL = URL_BASE + '/search.json';
+export const SEARCH_URL = URL_BASE_PHILOMENA + '/search/images';
 
 /**
  * Represents the URL for reverse image searches
+ * PHILOMENA: /api/v1/json/search/reverse
+ * TODO: appears broken in PHILOMENA until scraper is working
  *
  * @private
  */
-export const REVERSE_IMAGE_SEARCH_URL = URL_BASE + '/search/reverse.json';
+export const REVERSE_IMAGE_SEARCH_URL = URL_BASE_PHILOMENA + '/search/reverse';
