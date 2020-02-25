@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tag | node-derpi</title>
+	<title>Tag | node-derpi - v1.0.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">node-derpi</a>
+					<a href="../index.html" class="title">node-derpi - v1.0.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -95,10 +95,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#details" class="tsd-kind-icon">details</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#category" class="tsd-kind-icon">category</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#description" class="tsd-kind-icon">description</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#filterid" class="tsd-kind-icon">filterID</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#images" class="tsd-kind-icon">images</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#imagecount" class="tsd-kind-icon">image<wbr>Count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#nameinnamespace" class="tsd-kind-icon">name<wbr>InNamespace</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#namespace" class="tsd-kind-icon">namespace</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#slug" class="tsd-kind-icon">slug</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tag.html#spoilerimage" class="tsd-kind-icon">spoiler<wbr>Image</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -113,23 +120,48 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="details" class="tsd-anchor"></a>
-					<h3>details</h3>
-					<div class="tsd-signature tsd-kind-icon">details<span class="tsd-signature-symbol">:</span> <a href="tagdetails.html" class="tsd-signature-type">TagDetails</a><span class="tsd-signature-symbol"> =&nbsp;new TagDetails()</span></div>
+					<a name="category" class="tsd-anchor"></a>
+					<h3>category</h3>
+					<div class="tsd-signature tsd-kind-icon">category<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/af1c510/lib/api/Tag.ts#L24">api/Tag.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L34">api/Tag.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The details about this tag</p>
+							<p>The category of tags this tag is in</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>readonly</dt>
 							<dd></dd>
 							<dt>type</dt>
-							<dd><p>{TagDetails}</p>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L44">api/Tag.ts:44</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The description of this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
 							</dd>
 							<dt>memberof</dt>
 							<dd><p>Tag</p>
@@ -143,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">filterID<span class="tsd-signature-symbol">:</span> <a href="../enums/defaultfilters.html" class="tsd-signature-type">DefaultFilters</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;DefaultFilters.DEFAULT</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/af1c510/lib/api/Tag.ts#L51">api/Tag.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L132">api/Tag.ts:132</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -163,23 +195,123 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="images" class="tsd-anchor"></a>
-					<h3>images</h3>
-					<div class="tsd-signature tsd-kind-icon">images<span class="tsd-signature-symbol">:</span> <a href="image.html" class="tsd-signature-type">Image</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/af1c510/lib/api/Tag.ts#L34">api/Tag.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L24">api/Tag.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The images on this page of results for this tag</p>
+							<p>The ID of this tag</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>readonly</dt>
 							<dd></dd>
 							<dt>type</dt>
-							<dd><p>{Image[]}</p>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="imagecount" class="tsd-anchor"></a>
+					<h3>image<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">image<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L54">api/Tag.ts:54</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of images on this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L64">api/Tag.ts:64</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="nameinnamespace" class="tsd-anchor"></a>
+					<h3>name<wbr>InNamespace</h3>
+					<div class="tsd-signature tsd-kind-icon">name<wbr>InNamespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L74">api/Tag.ts:74</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the tag in its namespace (part after the colon)</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="namespace" class="tsd-anchor"></a>
+					<h3>namespace</h3>
+					<div class="tsd-signature tsd-kind-icon">namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L84">api/Tag.ts:84</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The namespace this tag is in (part before the colon)</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
 							</dd>
 							<dt>memberof</dt>
 							<dd><p>Tag</p>
@@ -193,7 +325,7 @@
 					<div class="tsd-signature tsd-kind-icon">next<wbr>Page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/af1c510/lib/api/Tag.ts#L42">api/Tag.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L123">api/Tag.ts:123</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,6 +335,59 @@
 						<dl class="tsd-comment-tags">
 							<dt>type</dt>
 							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="slug" class="tsd-anchor"></a>
+					<h3>slug</h3>
+					<div class="tsd-signature tsd-kind-icon">slug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L95">api/Tag.ts:95</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The sluggified name of this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>see</dt>
+							<dd><p>Helpers#sluggify</p>
+							</dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Tag</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="spoilerimage" class="tsd-anchor"></a>
+					<h3>spoiler<wbr>Image</h3>
+					<div class="tsd-signature tsd-kind-icon">spoiler<wbr>Image<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L105">api/Tag.ts:105</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The image used for spoilering images with this tag</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{string}</p>
 							</dd>
 							<dt>memberof</dt>
 							<dd><p>Tag</p>
@@ -223,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/af1c510/lib/api/Tag.ts#L59">api/Tag.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/b7a20e1/lib/api/Tag.ts#L140">api/Tag.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -300,16 +485,37 @@
 						<a href="tag.html" class="tsd-kind-icon">Tag</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="tag.html#details" class="tsd-kind-icon">details</a>
+								<a href="tag.html#category" class="tsd-kind-icon">category</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="tag.html#filterid" class="tsd-kind-icon">filterID</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="tag.html#images" class="tsd-kind-icon">images</a>
+								<a href="tag.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#imagecount" class="tsd-kind-icon">image<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#nameinnamespace" class="tsd-kind-icon">name<wbr>InNamespace</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#namespace" class="tsd-kind-icon">namespace</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="tag.html#nextpage" class="tsd-kind-icon">next<wbr>Page</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#slug" class="tsd-kind-icon">slug</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="tag.html#spoilerimage" class="tsd-kind-icon">spoiler<wbr>Image</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tag.html#fetchnextpage" class="tsd-kind-icon">fetch<wbr>Next<wbr>Page</a>
@@ -320,9 +526,6 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="tagcollection.html" class="tsd-kind-icon">Tag<wbr>Collection</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="tagdetails.html" class="tsd-kind-icon">Tag<wbr>Details</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-private">
 						<a href="urlconverter.html" class="tsd-kind-icon">URLConverter</a>
@@ -360,11 +563,17 @@
 					<li class=" tsd-kind-variable tsd-is-private">
 						<a href="../globals.html#search_url" class="tsd-kind-icon">SEARCH_<wbr>URL</a>
 					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#tag_search_url" class="tsd-kind-icon">TAG_<wbr>SEARCH_<wbr>URL</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-is-private">
 						<a href="../globals.html#tag_url" class="tsd-kind-icon">TAG_<wbr>URL</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-private">
 						<a href="../globals.html#url_base" class="tsd-kind-icon">URL_<wbr>BASE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#url_base_philomena" class="tsd-kind-icon">URL_<wbr>BASE_<wbr>PHILOMENA</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-private">
 						<a href="../globals.html#user_agent" class="tsd-kind-icon">USER_<wbr>AGENT</a>
@@ -395,6 +604,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -443,7 +653,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
