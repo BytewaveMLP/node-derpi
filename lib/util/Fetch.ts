@@ -9,9 +9,9 @@ import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
 import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
-import * as request from 'request';
 import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+import request = require('request');
 
 /**
  * Represents various sort formats for results
@@ -427,22 +427,7 @@ export class Fetch {
 		return new Promise<any>((resolve, reject) => {
 			const opts = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
 
-			if (opts.method === 'POST') {
-				request.post(opts, (err: any, response: request.Response, body: any) => {
-					if (err) {
-						return reject(err);
-					}
-
-					const status = response.statusCode;
-					if (status !== Consts.HTTP_200_OK && status !== Consts.HTTP_301_MOVED_PERMANENTLY) {
-						return reject(new Error(`Received status code ${status}`));
-					}
-	
-					resolve(body);
-				});
-			} else {
-				
-			request.get(opts, (err: any, response: request.Response, body: any) => {
+			request(opts, (err: any, response: request.Response, body: any) => {
 				if (err) {
 					return reject(err);
 				}
@@ -454,7 +439,6 @@ export class Fetch {
 
 				return resolve(body);
 			});
-			}
 		});
 	}
 }
