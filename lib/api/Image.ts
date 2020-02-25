@@ -93,13 +93,11 @@ export class Image {
 	 * Returns null if the image has no artist
 	 *
 	 * @readonly
-	 * @type {(string[] | null)}
+	 * @type {(string[])}
 	 * @memberof Image
 	 */
-	get artistNames(): string[] | null {
+	get artistNames(): string[] {
 		const artists = this.tagNames.filter(tag => tag.startsWith('artist:'));
-		if (!artists) return null;
-
 		return artists.map(artist => artist.substring('artist:'.length));
 	}
 
