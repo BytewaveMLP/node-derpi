@@ -68,14 +68,25 @@ export class Image {
 	public readonly favorites: number = 0;
 
 	/**
-	 * The tags on the image, represented as a comma-separated string for convenience
+	 * Gets a list of tag names on the image
 	 *
 	 * @readonly
-	 * @type {string}
+	 * @type {string[]}
 	 * @memberof Image
 	 */
 	@JsonProperty('tags', [String])
 	public readonly tagNames: string[] = [];
+
+	/**
+	 * The tags on the image, represented as a comma-separated string for convenience
+	 * 
+	 * @readonly
+	 * @type {string}
+	 * @memberof Image
+	 */
+	get tagString(): string {
+		return this.tagNames.join(', ');
+	}
 
 	/**
 	 * Gets the name of the artist of the image
