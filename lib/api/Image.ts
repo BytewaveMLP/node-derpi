@@ -7,7 +7,6 @@ import { DateConverter } from '../util/DateConverter';
 import { Fetch } from '../util/Fetch';
 import { TagCollection } from '../util/TagCollection';
 import { ImageComments } from './ImageComments';
-import { Tag } from './Tag';
 
 /**
  * Represents a single image
@@ -94,27 +93,14 @@ export class Image {
 	 * Returns null if the image has no artist
 	 *
 	 * @readonly
-	 * @type {(string | null)}
+	 * @type {(string[] | null)}
 	 * @memberof Image
 	 */
-	get artistName(): string | null {
-		let artist = this.tagNames.find(tag => tag.startsWith('artist:'));
-		if (!artist) return null;
+	get artistNames(): string[] | null {
+		const artists = this.tagNames.filter(tag => tag.startsWith('artist:'));
+		if (!artists) return null;
 
-		return artist.substring('artist:'.length);
-	}
-
-	/**
-	 * Gets the Tag object for the artist tag on the image
-	 *
-	 * Returns null if the image has no artist
-	 *
-	 * @returns {(Promise<Tag | null>)}
-	 * @memberof Image
-	 */
-	public async artist(): Promise<Tag | null> {
-		if (!this.artistName) return null;
-		return Fetch.fetchTag(this.artistName);
+		return artists.map(artist => artist.substring('artist:'.length));
 	}
 
 	/**
