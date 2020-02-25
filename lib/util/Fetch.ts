@@ -9,9 +9,9 @@ import { ImageComments } from '../api/ImageComments';
 import { DefaultFilters } from './DefaultFilters';
 import { ReverseImageSearchResults } from '../api/ReverseImageSearchResults';
 
-import * as request from 'request';
 import { Stream } from 'stream';
 import { JsonConvert, ValueCheckingMode } from 'json2typescript';
+import request = require('request');
 
 /**
  * Represents various sort formats for results
@@ -147,7 +147,6 @@ const MAXIUMUM_ID_FETCH_RETRIES = 10;
  */
 export class Fetch {
 	private static jsonConvert: JsonConvert = new JsonConvert();
-	private static tagIDToURLMap: Map<number, string> = new Map<number, string>();
 	private static userIDToURLMap: Map<number, string> = new Map<number, string>();
 
 	/**
@@ -179,7 +178,7 @@ export class Fetch {
 
 		// transparently handle duplicate images
 		if (json['duplicate_of']) return this.fetchImage(json['duplicate_of']);
-		return this.jsonConvert.deserializeObject(json, Image);
+		return this.jsonConvert.deserializeObject(json.image, Image);
 	}
 
 	/**
@@ -267,7 +266,7 @@ export class Fetch {
 		};
 
 		const json = await this.fetchJSON(options);
-		let tag = this.jsonConvert.deserializeObject(json, Tag);
+		let tag = this.jsonConvert.deserializeObject(json.tag, Tag);
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
 		return tag;
@@ -275,9 +274,6 @@ export class Fetch {
 
 	/**
 	 * Fetches a tag and its associated details by ID
-	 *
-	 * THIS IS A VERY VERY VERY DIRTY HACK, BUT DERPIBOORU'S API DESIGN REQUIRES ITS EXISTENCE!
-	 * I'M SORRY!
 	 *
 	 * @static
 	 * @param {number} id The ID of the tag to fetch
@@ -290,15 +286,10 @@ export class Fetch {
 		if (page === undefined) page = 1;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
-		let curId = '0' + id;
-
-		if (this.tagIDToURLMap.has(id)) {
-			curId = (this.tagIDToURLMap.get(id) as string);
-		}
-
 		const options: request.Options = {
-			uri: URLs.TAG_URL.replace('{}', curId),
+			uri: URLs.TAG_SEARCH_URL,
 			qs: {
+				q: 'id:' + id,
 				page: page,
 				filter_id: filterID
 			}
@@ -306,25 +297,9 @@ export class Fetch {
 		let requestOptions = Object.assign({}, options);
 		let json = await this.fetchJSON(requestOptions);
 
-		let loopCount = 0;
+		if (!json.tags) throw new Error('Tag with id matching ' + id + ' not found.');
 
-		while (json.tag.id !== id) {
-			curId = '0' + curId;
-			requestOptions.uri = URLs.TAG_URL.replace('{}', curId);
-			json = await this.fetchJSON(requestOptions);
-
-			loopCount++;
-
-			if (loopCount >= MAXIUMUM_ID_FETCH_RETRIES) {
-				throw new Error('Maximum number of fetch attempts exceeded - blame Derpibooru for allowing name -> ID collisions.');
-			}
-		}
-
-		if (!this.tagIDToURLMap.has(id)) {
-			this.tagIDToURLMap.set(id, curId);
-		}
-
-		let tag = this.jsonConvert.deserializeObject(json, Tag);
+		let tag = this.jsonConvert.deserializeObject(json.tags[0], Tag);
 		tag.filterID = filterID;
 		tag.nextPage = page + 1;
 		return tag;
@@ -345,7 +320,7 @@ export class Fetch {
 		if (query === undefined || query === '') query = '*';
 		if (sortFormat === undefined) sortFormat = ResultSortFormat.CREATION_DATE;
 		if (sortOrder === undefined) sortOrder = ResultSortOrder.DESCENDING;
-		if (page === undefined) page = 0;
+		if (page === undefined) page = 1;
 		if (filterID === undefined) filterID = DefaultFilters.DEFAULT;
 
 		const options: request.Options = {
@@ -360,6 +335,7 @@ export class Fetch {
 		};
 
 		const json = await this.fetchJSON(options);
+
 		let searchResults = this.jsonConvert.deserializeObject(json, SearchResults);
 		searchResults.nextPage = page + 1;
 		searchResults.query = query;
@@ -389,25 +365,20 @@ export class Fetch {
 
 		let options: request.Options = {
 			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
-			method: key ? 'POST' : 'GET', // more Derpi API weirdness! yay!
+			qs: {
+				url: url
+			},
+			method: 'POST',
 			formData: {
 				fuzziness: fuzziness.toFixed(2) // just to be safe
 			}
 		};
 
-		if (!options.formData) throw new Error('literally should never happen'); // just here to make typescript happy
-
-		if (url) options.formData.scraper_url = url;
-		else if (image) {
-			options.formData.key   = key;
-			options.formData.image = image;
-		}
-
 		let json = await this.fetchJSON(options);
 
 		// This operates under the assumption that all images with duplicate_of will have their duplicates show up under the other reverse image results
 		// TODO: does that actually happen?
-		json.search = json.search.filter((image: any) => !image.duplicate_of);
+		json.images = json.images.filter((image: any) => !image.duplicate_of);
 
 		let reverseImageSearch = this.jsonConvert.deserializeObject(json, ReverseImageSearchResults);
 
@@ -429,8 +400,9 @@ export class Fetch {
 		if (page === undefined) page = 1;
 
 		const options: request.Options = {
-			uri: URLs.COMMENTS_URL.replace('{}', '' + imageID),
+			uri: URLs.COMMENTS_URL,
 			qs: {
+				q: 'id:' + imageID,
 				page: page
 			}
 		};
@@ -455,7 +427,7 @@ export class Fetch {
 		return new Promise<any>((resolve, reject) => {
 			const opts = Object.assign({}, Consts.DEFAULT_REQUEST_OPTS, options);
 
-			request.get(opts, (err: any, response: request.Response, body: any) => {
+			request(opts, (err: any, response: request.Response, body: any) => {
 				if (err) {
 					return reject(err);
 				}

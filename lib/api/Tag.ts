@@ -1,9 +1,9 @@
-import { TagDetails } from './TagDetails';
-import { Image } from './Image';
+//import { Image } from './Image';
 import { Fetch } from '../util/Fetch';
 import { DefaultFilters } from '../util/DefaultFilters';
 
 import { JsonObject, JsonProperty } from 'json2typescript';
+import { URLConverter } from '../util/URLConverter';
 
 /**
  * Represents a page of tag results, as well as a list of various details about a tag
@@ -14,14 +14,95 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 @JsonObject
 export class Tag {
 	/**
-	 * The details about this tag
+	 * The ID of this tag
 	 *
 	 * @readonly
-	 * @type {TagDetails}
+	 * @type {number}
 	 * @memberof Tag
 	 */
-	@JsonProperty('tag', TagDetails)
-	public readonly details: TagDetails = new TagDetails();
+	@JsonProperty('id', Number)
+	public readonly id: number = 0;
+
+	/**
+	 * The category of tags this tag is in
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('category', String)
+	public readonly category: string = '';
+
+	/**
+	 * The description of this tag
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('description', String)
+	public readonly description: string = '';
+
+	/**
+	 * The number of images on this tag
+	 *
+	 * @readonly
+	 * @type {number}
+	 * @memberof Tag
+	 */
+	@JsonProperty('images', Number)
+	public readonly imageCount: number = 0;
+
+	/**
+	 * The name of this tag
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('name', String)
+	public readonly name: string = '';
+
+	/**
+	 * The name of the tag in its namespace (part after the colon)
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('name_in_namespace', String)
+	public readonly nameInNamespace: string = '';
+
+	/**
+	 * The namespace this tag is in (part before the colon)
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('namespace', String)
+	public readonly namespace: string = '';
+
+	/**
+	 * The sluggified name of this tag
+	 *
+	 * @readonly
+	 * @see Helpers#sluggify
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('slug', String)
+	public readonly slug: string = '';
+
+	/**
+	 * The image used for spoilering images with this tag
+	 *
+	 * @readonly
+	 * @type {string}
+	 * @memberof Tag
+	 */
+	@JsonProperty('spoiler_image_uri', URLConverter)
+	public readonly spoilerImage: string = '';
 
 	/**
 	 * The images on this page of results for this tag
@@ -30,8 +111,8 @@ export class Tag {
 	 * @type {Image[]}
 	 * @memberof Tag
 	 */
-	@JsonProperty('images', [Image])
-	public readonly images: Image[] = [];
+	// @JsonProperty('images', [Image])
+	// public readonly images: Image[] = [];
 
 	/**
 	 * The next page of results for this tag
@@ -57,6 +138,6 @@ export class Tag {
 	 * @memberof Tag
 	 */
 	public async fetchNextPage(): Promise<Tag> {
-		return Fetch.fetchTagByID(this.details.id, this.nextPage, this.filterID);
+		return Fetch.fetchTagByID(this.id, this.nextPage, this.filterID);
 	}
 }

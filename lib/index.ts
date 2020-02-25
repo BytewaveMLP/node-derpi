@@ -20,5 +20,4 @@ export { Link } from './api/Link';
 export { SearchResults } from './api/SearchResults';
 export { ReverseImageSearchResults } from './api/ReverseImageSearchResults';
 export { Tag } from './api/Tag';
-export { TagDetails } from './api/TagDetails';
 export { User } from './api/User';

@@ -68,24 +68,24 @@ export class Image {
 	public readonly favorites: number = 0;
 
 	/**
-	 * The tags on the image, represented as a comma-separated string for convenience
-	 *
-	 * @readonly
-	 * @type {string}
-	 * @memberof Image
-	 */
-	@JsonProperty('tags', String)
-	public readonly tagString: string = '';
-
-	/**
-	 * Gets a list of tag names on the image; saves an HTTP request for each tag
+	 * Gets a list of tag names on the image
 	 *
 	 * @readonly
 	 * @type {string[]}
 	 * @memberof Image
 	 */
-	get tagNames(): string[] {
-		return this.tagString.split(', ');
+	@JsonProperty('tags', [String])
+	public readonly tagNames: string[] = [];
+
+	/**
+	 * The tags on the image, represented as a comma-separated string for convenience
+	 * 
+	 * @readonly
+	 * @type {string}
+	 * @memberof Image
+	 */
+	get tagString(): string {
+		return this.tagNames.join(', ');
 	}
 
 	/**
@@ -144,7 +144,7 @@ export class Image {
 	 * @type {string}
 	 * @memberof Image
 	 */
-	@JsonProperty('file_name', String)
+	@JsonProperty('name', String)
 	public readonly fileName: string = '';
 
 	/**
@@ -174,7 +174,7 @@ export class Image {
 	 * @type {string}
 	 * @memberof Image
 	 */
-	@JsonProperty('original_format', String)
+	@JsonProperty('format', String)
 	public readonly originalFormat: string = '';
 
 	/**
@@ -234,7 +234,7 @@ export class Image {
 	 * @type {boolean}
 	 * @memberof Image
 	 */
-	@JsonProperty('is_rendered', Boolean)
+	@JsonProperty('processed', Boolean)
 	public readonly isRendered: boolean = false;
 
 	/**
@@ -244,7 +244,7 @@ export class Image {
 	 * @type {boolean}
 	 * @memberof Image
 	 */
-	@JsonProperty('is_optimized', Boolean)
+	@JsonProperty('processed', Boolean)
 	public readonly isOptimized: boolean = false;
 
 	/**

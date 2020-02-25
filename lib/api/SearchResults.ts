@@ -19,7 +19,7 @@ export class SearchResults {
 	 * @type {Image[]}
 	 * @memberof SearchResults
 	 */
-	@JsonProperty('search', [Image])
+	@JsonProperty('images', [Image])
 	public readonly images: Image[] = [];
 
 	/**

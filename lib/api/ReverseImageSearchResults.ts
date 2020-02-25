@@ -17,16 +17,6 @@ export class ReverseImageSearchResults {
 	 * @type {Image[]}
 	 * @memberof ReverseImageSearchResults
 	 */
-	@JsonProperty('search', [Image])
+	@JsonProperty('images', [Image])
 	public readonly images: Image[] = [];
-
-	/**
-	 * The total number of images returned by this search
-	 *
-	 * @readonly
-	 * @type {number}
-	 * @memberof ReverseImageSearchResults
-	 */
-	@JsonProperty('total', Number)
-	public readonly total: number = 0;
 }
