@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Comment | node-derpi - v1.0.3</title>
+	<title>Comment | node-derpi - v1.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">node-derpi - v1.0.3</a>
+					<a href="../index.html" class="title">node-derpi - v1.0.4</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -96,11 +96,15 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="comment.html#_image" class="tsd-kind-icon">_image</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#authoravatar" class="tsd-kind-icon">author<wbr>Avatar</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#authorid" class="tsd-kind-icon">author<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#authorname" class="tsd-kind-icon">author<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#body" class="tsd-kind-icon">body</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#deleted" class="tsd-kind-icon">deleted</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#editreason" class="tsd-kind-icon">edit<wbr>Reason</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#edited" class="tsd-kind-icon">edited</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#posted" class="tsd-kind-icon">posted</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comment.html#updated" class="tsd-kind-icon">updated</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -121,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">_image<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L78">api/Comment.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L116">api/Comment.ts:116</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -141,12 +145,59 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authoravatar" class="tsd-anchor"></a>
+					<h3>author<wbr>Avatar</h3>
+					<div class="tsd-signature tsd-kind-icon">author<wbr>Avatar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L105">api/Comment.ts:105</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A URI representing the user&#39;s avatar</p>
+						</div>
+						<p>May be a data URI or a link to an image</p>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Comment</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authorid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> author<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">author<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L94">api/Comment.ts:94</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ID of the user who posted this comment</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Comment</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="authorname" class="tsd-anchor"></a>
 					<h3>author<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">author<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L67">api/Comment.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L85">api/Comment.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,7 +223,7 @@
 					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L35">api/Comment.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L35">api/Comment.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,23 +243,44 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="deleted" class="tsd-anchor"></a>
-					<h3>deleted</h3>
-					<div class="tsd-signature tsd-kind-icon">deleted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<a name="editreason" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> edit<wbr>Reason</h3>
+					<div class="tsd-signature tsd-kind-icon">edit<wbr>Reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L45">api/Comment.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L73">api/Comment.ts:73</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Has the comment been deleted?</p>
+							<p>Why the comment was edited</p>
 						</div>
 						<dl class="tsd-comment-tags">
-							<dt>readonly</dt>
-							<dd></dd>
 							<dt>type</dt>
-							<dd><p>{boolean}</p>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Comment</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="edited" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> edited</h3>
+					<div class="tsd-signature tsd-kind-icon">edited<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L64">api/Comment.ts:64</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The date the comment was last edited on</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{Date}</p>
 							</dd>
 							<dt>memberof</dt>
 							<dd><p>Comment</p>
@@ -222,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L25">api/Comment.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L25">api/Comment.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,12 +319,37 @@
 					<div class="tsd-signature tsd-kind-icon">posted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;Consts.DEFAULT_DATE</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L55">api/Comment.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L45">api/Comment.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The date the comment was posted on</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>readonly</dt>
+							<dd></dd>
+							<dt>type</dt>
+							<dd><p>{Date}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>Comment</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="updated" class="tsd-anchor"></a>
+					<h3>updated</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;Consts.DEFAULT_DATE</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L55">api/Comment.ts:55</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The date the comment was last updated on</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>readonly</dt>
@@ -273,13 +370,13 @@
 					<a name="author" class="tsd-anchor"></a>
 					<h3>author</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">author<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">author<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L86">api/Comment.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L124">api/Comment.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,7 +389,7 @@
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A Promise wrapping the user that posted this comment</p>
 						</li>
 					</ul>
@@ -307,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/ce9fa7e/lib/api/Comment.ts#L108">api/Comment.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/BytewaveMLP/node-derpi/blob/e1fcd8c/lib/api/Comment.ts#L135">api/Comment.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -361,19 +458,31 @@
 								<a href="comment.html#_image" class="tsd-kind-icon">_image</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comment.html#authoravatar" class="tsd-kind-icon">author<wbr>Avatar</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comment.html#authorid" class="tsd-kind-icon">author<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="comment.html#authorname" class="tsd-kind-icon">author<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="comment.html#body" class="tsd-kind-icon">body</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="comment.html#deleted" class="tsd-kind-icon">deleted</a>
+								<a href="comment.html#editreason" class="tsd-kind-icon">edit<wbr>Reason</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comment.html#edited" class="tsd-kind-icon">edited</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="comment.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="comment.html#posted" class="tsd-kind-icon">posted</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comment.html#updated" class="tsd-kind-icon">updated</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="comment.html#author" class="tsd-kind-icon">author</a>
