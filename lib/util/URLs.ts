@@ -34,7 +34,7 @@ export const IMAGE_URL = URL_BASE_PHILOMENA + '/images/{}';
 
 /**
  * Represents the URL for image comments
- * PHILOMENA: /api/v1/json/search/comments?id:{}
+ * PHILOMENA: /api/v1/json/search/comments?q=image_id:{}
  * 
  * @private
  */
@@ -51,7 +51,6 @@ export const SEARCH_URL = URL_BASE_PHILOMENA + '/search/images';
 /**
  * Represents the URL for reverse image searches
  * PHILOMENA: /api/v1/json/search/reverse
- * TODO: appears broken in PHILOMENA until scraper is working
  *
  * @private
  */

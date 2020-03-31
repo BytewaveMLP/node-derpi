@@ -153,11 +153,33 @@ describe('HTTP fetching', () => {
 	describe('reverse search', () => {
 		it('should produce valid results', () => {
 			return expect(Fetch.reverseImageSearch({
-				url: "https://derpicdn.net/img/2019/12/24/2228439/full.jpg"
+				url: 'https://derpicdn.net/img/2019/12/24/2228439/full.jpg'
 			}))
 				.to.be.fulfilled
-				.and.to.eventually.have.property("images")
+				.and.to.eventually.have.property('images')
 				.that.has.lengthOf.above(0);
+		});
+	});
+
+	describe('comments', () => {
+		const commentsPromise = Fetch.fetchComments(0);
+
+		it('should fetch and deserialize image comments', () => {
+			return expect(commentsPromise)
+				.to.be.fulfilled
+				.and.to.eventually.have.property('comments')
+				.that.has.lengthOf.above(0);
+		});
+
+		it('should paginate', done => {
+			commentsPromise.then(comments => {
+				const nextPagePromise = comments.fetchNextPage();
+				expect(nextPagePromise)
+					.to.be.fulfilled
+					.and.to.eventually.have.property('comments')
+					.that.has.lengthOf.above(0)
+					.notify(done);
+			}).catch(e => done(e));
 		});
 	});
 });

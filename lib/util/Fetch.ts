@@ -366,12 +366,10 @@ export class Fetch {
 		let options: request.Options = {
 			uri: URLs.REVERSE_IMAGE_SEARCH_URL,
 			qs: {
-				url: url
+				url: url,
+				distance: fuzziness
 			},
-			method: 'POST',
-			formData: {
-				fuzziness: fuzziness.toFixed(2) // just to be safe
-			}
+			method: 'POST'
 		};
 
 		let json = await this.fetchJSON(options);
@@ -402,7 +400,7 @@ export class Fetch {
 		const options: request.Options = {
 			uri: URLs.COMMENTS_URL,
 			qs: {
-				q: 'id:' + imageID,
+				q: 'image_id:' + imageID,
 				page: page
 			}
 		};

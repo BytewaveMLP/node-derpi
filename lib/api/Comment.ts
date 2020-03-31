@@ -35,24 +35,42 @@ export class Comment {
 	public readonly body: string = '';
 
 	/**
-	 * Has the comment been deleted?
-	 *
-	 * @readonly
-	 * @type {boolean}
-	 * @memberof Comment
-	 */
-	@JsonProperty('deleted', Boolean)
-	public readonly deleted: boolean = false;
-
-	/**
 	 * The date the comment was posted on
 	 *
 	 * @readonly
 	 * @type {Date}
 	 * @memberof Comment
 	 */
-	@JsonProperty('posted_at', DateConverter)
+	@JsonProperty('created_at', DateConverter)
 	public readonly posted: Date = Consts.DEFAULT_DATE;
+
+	/**
+	 * The date the comment was last updated on
+	 *
+	 * @readonly
+	 * @type {Date}
+	 * @memberof Comment
+	 */
+	@JsonProperty('updated_at', DateConverter)
+	public readonly updated: Date = Consts.DEFAULT_DATE;
+
+	/**
+	 * The date the comment was last edited on
+	 *
+	 * @type {Date}
+	 * @memberof Comment
+	 */
+	@JsonProperty('edited_at', DateConverter)
+	public readonly edited?: Date = undefined;
+
+	/**
+	 * Why the comment was edited
+	 *
+	 * @type {string}
+	 * @memberof Comment
+	 */
+	@JsonProperty('edit_reason', String)
+	public readonly editReason?: string = undefined;
 
 	/**
 	 * The name of the user who posted this comment
@@ -65,6 +83,26 @@ export class Comment {
 	 */
 	@JsonProperty('author', String)
 	public readonly authorName: string = '';
+
+	/**
+	 * The ID of the user who posted this comment
+	 *
+	 * @type {number}
+	 * @memberof Comment
+	 */
+	@JsonProperty('user_id', Number)
+	public readonly authorId?: number = undefined;
+
+	/**
+	 * A URI representing the user's avatar
+	 * 
+	 * May be a data URI or a link to an image
+	 *
+	 * @type {string}
+	 * @memberof Comment
+	 */
+	@JsonProperty('avatar', String)
+	public readonly authorAvatar: string = '';
 
 	/**
 	 * The internal ID of the image this comment was posted on
@@ -83,20 +121,9 @@ export class Comment {
 	 * @returns {Promise<User>} A Promise wrapping the user that posted this comment
 	 * @memberof Comment
 	 */
-	public async author(): Promise<User> {
-		// Part II of the Background Pony saga:
-		// comments_home.json does NOT provide me with the user ID of the uploader, just the name
-		// Is this a **user** with the name Background Pony #whatever, or is it a real anonymous user??
-		// We're just going to assume the latter and hope nobody breaks anything.
-		if (this.authorName.match(/Background Pony \#[0-9A-Z]+/)) {
-			let user = new User();
-			user.name = this.authorName; // TODO: figure out how to do this better so user.name can be readonly
-			return user;
-		}
-
-		let user = await Fetch.fetchUser(this.authorName);
-
-		return user;
+	public async author(): Promise<User | null> {
+		if (!this.authorId) return null;
+		return Fetch.fetchUserByID(this.authorId);
 	}
 
 	/**
