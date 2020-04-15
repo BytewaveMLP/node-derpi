@@ -14,7 +14,7 @@ import { ImageComments } from './ImageComments';
  * @export
  * @class Image
  */
-@JsonObject
+@JsonObject('Image')
 export class Image {
 	/**
 	 * The internal ID of the image

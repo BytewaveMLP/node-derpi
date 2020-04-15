@@ -10,7 +10,7 @@ import { DefaultFilters } from '../util/DefaultFilters';
  * @export
  * @class SearchResults
  */
-@JsonObject
+@JsonObject('SearchResults')
 export class SearchResults {
 	/**
 	 * The images on this page of results

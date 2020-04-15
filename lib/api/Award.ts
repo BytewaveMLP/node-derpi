@@ -10,7 +10,7 @@ import { DateConverter } from '../util/DateConverter';
  * @export
  * @class Award
  */
-@JsonObject
+@JsonObject('Award')
 export class Award {
 	/**
 	 * The title of the award

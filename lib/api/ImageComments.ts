@@ -9,7 +9,7 @@ import { Fetch } from '..';
  * @export
  * @class ImageComments
  */
-@JsonObject
+@JsonObject('ImageComments')
 export class ImageComments {
 	/**
 	 * The comments on this page

@@ -8,7 +8,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * @export
  * @class SearchResults
  */
-@JsonObject
+@JsonObject('ReverseImageSearchResults')
 export class ReverseImageSearchResults {
 	/**
 	 * The images on this page of results

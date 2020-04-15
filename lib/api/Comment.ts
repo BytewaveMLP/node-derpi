@@ -12,7 +12,7 @@ import { Fetch } from '..';
  * @export
  * @class Comment
  */
-@JsonObject
+@JsonObject('Comment')
 export class Comment {
 	/**
 	 * The ID of the comment

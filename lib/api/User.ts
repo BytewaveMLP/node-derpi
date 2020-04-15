@@ -12,7 +12,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * @export
  * @class User
  */
-@JsonObject
+@JsonObject('User')
 export class User {
 	/**
 	 * The internal ID of the user

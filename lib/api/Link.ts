@@ -12,7 +12,7 @@ import { Fetch } from '..';
  * @export
  * @class Link
  */
-@JsonObject
+@JsonObject('Link')
 export class Link {
 	/**
 	 * The current state of the link

@@ -11,7 +11,7 @@ import { URLConverter } from '../util/URLConverter';
  * @export
  * @class Tag
  */
-@JsonObject
+@JsonObject('Tag')
 export class Tag {
 	/**
 	 * The ID of this tag

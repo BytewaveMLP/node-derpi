@@ -8,7 +8,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * @export
  * @class ImageRepresentations
  */
-@JsonObject
+@JsonObject('ImageRepresentations')
 export class ImageRepresentations {
 	/**
 	 * The smallest rendered size of the image
